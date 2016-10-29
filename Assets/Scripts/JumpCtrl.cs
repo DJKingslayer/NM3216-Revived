@@ -13,7 +13,7 @@ public class JumpCtrl : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.CompareTag ("GROUND") || other.CompareTag ("Enemies") || other.CompareTag ("Platform")) {
+		if (other.CompareTag ("GROUND") || other.CompareTag ("Enemies") || other.CompareTag ("Platform") || other.CompareTag("Obstacle")) {
 			playerController.ResetJump ();
 		}
 	}
