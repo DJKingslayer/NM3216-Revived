@@ -22,9 +22,7 @@ public class SceneFader : MonoBehaviour {
 
 	private Color offBlack;
 
-	public GameObject crosshair;
-
-	private GameObject player;
+	private GameObject crosshair;
 
 	private PlayerController playerController;
 
@@ -35,16 +33,13 @@ public class SceneFader : MonoBehaviour {
 	[SerializeField]
 	private bool isTest;
 
-
-
+	private string NextScene;
 
 	// Use this for initialization
 	void Start () 
 	{		
 		cover = GameObject.Find ("Cover").GetComponent<SpriteRenderer>();
 		playerController = GameObject.Find ("Player").GetComponent<PlayerController> ();
-		player = GameObject.Find ("Player");
-//		crosshairSpawnLoc = player.transform.FindChild ("crosshairLoc");
 
 		textBoxManager = FindObjectOfType<TextBoxManager> ();
 
@@ -63,28 +58,26 @@ public class SceneFader : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		
 		if (IsFaded) {
 			FadeToWhite ();
 
-			if (GameObject.Find ("Crosshair") != null) 
-			{
-				crosshair.SetActive (true);
-			}
-
+//			if (GameObject.Find ("Crosshair") != null) 
+//			{
+//				crosshair.SetActive (true);
+//			}
+//
 
 		}
 
 		if (!IsFaded) {
 			FadeToBlack ();
 
-//			crossHairSpawned = false;
-
-			if (GameObject.Find ("Crosshair") != null) 
-			{
-				crosshair.SetActive (false);
-			}
-
+//			if (GameObject.Find ("Crosshair") != null) 
+//			{
+//				crosshair.SetActive (false);
+//			}
+//
 		}
 
 
@@ -106,13 +99,11 @@ public class SceneFader : MonoBehaviour {
 		}
 
 		if (textBoxManager.endOfStage && textBoxManager.currentLine == textBoxManager.endAtLine) 
-		{
+		{						
+			sceneSelect ();
+			SceneManager.LoadScene (NextScene);
+			PlayerData.Scene += 1;			
 
-			if (Input.GetKeyDown (KeyCode.Space)) 
-			{
-				SceneManager.LoadScene ("Scene2");
-				PlayerData.Scene += 1;
-			}
 		}
 
 		if (!playerController.isAlive) 
@@ -152,4 +143,28 @@ public class SceneFader : MonoBehaviour {
 		fadeScreenText.color = Color.Lerp (fadeScreenText.color, Color.white, Time.deltaTime * fadeTime);
 		NextKey.color = Color.Lerp (fadeScreenText.color, Color.white, Time.deltaTime * fadeTime);
 	}
+
+	void sceneSelect()
+	{
+		Scene CurrentScene = SceneManager.GetActiveScene ();
+
+		if (CurrentScene.name == "Tutorial_Learning_Portion") 
+		{
+			NextScene = "Tutorial_Calculation_Portion";
+		}
+
+		if (CurrentScene.name == "Tutorial_Calculation_Portion") 
+		{
+			if (PlayerData.IsKiller) 
+			{
+				NextScene = "FenrirMain";
+			}
+
+			if (!PlayerData.IsKiller) 
+			{
+				NextScene = "IriMain";
+			}
+		}				
+	}
 }
+

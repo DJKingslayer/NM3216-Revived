@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour {
 	public bool CanMove;
 	public bool IsKiller;
 	public bool SetKiller;
+	public bool AlignTest;
 
 	//for testing only (makes player invulnerable)
 	public bool isTest;
@@ -63,6 +64,8 @@ public class PlayerController : MonoBehaviour {
 
 	private StoryDialogue storyDialogue;
 
+	private ParticleSystem particles;
+
 
 	// Use this for initialization
 	void Start () {
@@ -72,6 +75,7 @@ public class PlayerController : MonoBehaviour {
 		wolfSprite = gameObject.GetComponent<SpriteRenderer> ();
 		sceneFader = GameObject.Find ("Cover").GetComponent<SceneFader> ();	
 		source = gameObject.GetComponent<AudioSource>();
+		particles = gameObject.GetComponent<ParticleSystem> ();
 		cFull = wolfSprite.color;
 
 		storyDialogue = FindObjectOfType<StoryDialogue> ();
@@ -101,6 +105,11 @@ public class PlayerController : MonoBehaviour {
 		respawnPosition = gameObject.transform.position;
 
 		TeleIcon.SetActive (false);
+
+		if (transform.localScale.x > 0) 
+		{
+			facingRight = true;
+		}
 
 		if (PlayerData.AlignSet) 
 		{
@@ -322,6 +331,7 @@ public class PlayerController : MonoBehaviour {
 			if (Input.GetKeyDown (KeyCode.Z)) 
 			{
 				Dodge ();
+				particles.Play ();
 			}
 		}
 	}
@@ -559,7 +569,9 @@ public class PlayerController : MonoBehaviour {
 
 	public void CountDeath ()
 	{
-		PlayerData.KillCount += 1;
+		if (AlignTest) {
+			PlayerData.KillCount += 1;
+		}
 	}
 
 

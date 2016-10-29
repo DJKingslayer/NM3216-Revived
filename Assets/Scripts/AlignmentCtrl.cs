@@ -27,7 +27,7 @@ public class AlignmentCtrl : MonoBehaviour {
 			return;
 		}
 
-		if (PlayerData.Scene > 1) 
+		if (PlayerData.Scene > 2) 
 		{
 			if (PlayerData.IsKiller) {
 				textBoxManager.ReloadScript (BlackText, false);
