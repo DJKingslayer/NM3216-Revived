@@ -84,7 +84,6 @@ public class PlayerController : MonoBehaviour {
 
 		isHurt = false;
 		jumping = false;
-//		facingRight = true;
 		isPouncing = false;
 		Invulnerable = false;
 		isAlive = true;
@@ -115,10 +114,7 @@ public class PlayerController : MonoBehaviour {
 		{
 			IsKiller = PlayerData.IsKiller;
 		}
-
-
-		//only proceed to chance alignment if alignment has already been set.
-
+			
 	}
 	
 	// Update is called once per frame
