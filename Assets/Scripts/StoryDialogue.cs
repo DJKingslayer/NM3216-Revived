@@ -5,11 +5,10 @@ public class StoryDialogue : MonoBehaviour {
 
 	[SerializeField]
 	private int counter,counterB;
-	private SfxCtrl sfx;
 
 	private AudioSource source;
 
-	public int growlNo;
+	public int GrownNum;
 
 	public AudioClip growl;
 	public AudioClip sadHowl;
@@ -18,17 +17,15 @@ public class StoryDialogue : MonoBehaviour {
 	void Start () {
 		counter = 0;
 		counterB = 0;
-		sfx = FindObjectOfType<SfxCtrl> ();
 		source = gameObject.GetComponent<AudioSource> ();	
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (counter == growlNo)
+		if (counter == GrownNum)
 		{
 			Invoke ("delayGrowl", 3);				
-			counter -= growlNo;
-			print ("growl");
+			counter -= GrownNum;
 		}
 
 		if (PlayerData.IsKiller) 
@@ -36,7 +33,6 @@ public class StoryDialogue : MonoBehaviour {
 			if (counterB == 25) 
 			{
 				Invoke ("delayHowl", 3);				
-				print ("sadhowl");
 			}
 		}
 

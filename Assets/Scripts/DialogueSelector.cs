@@ -14,12 +14,13 @@ public class DialogueSelector : MonoBehaviour {
 
 	public AudioClip Ding;
 
-	public TextBoxManager theTextbox;
+	private TextBoxManager theTextbox;
 
 	public bool DestroyWhenActivated;
 	public bool isEnd, hasActivated;
 	public bool UseFader;
 	public bool FreezePlayer;
+	public bool MultiEnd;
 
 	private SceneFader fader;
 
@@ -75,17 +76,20 @@ public class DialogueSelector : MonoBehaviour {
 			{
 				align.SetAlign ();
 				theTextbox.ReloadScript (theText,isEnd);
+				theTextbox.currentLine = startLine;
 
-				if (!PlayerData.IsKiller) 
+				if (MultiEnd) 
 				{
-					theTextbox.currentLine = GoodStart;
-					theTextbox.endAtLine = GoodEnd;
-				}
-
-				if (PlayerData.IsKiller) 
-				{
-					theTextbox.currentLine = BadStart;
-					theTextbox.endAtLine = BadEnd;
+					if (!PlayerData.IsKiller) {
+						theTextbox.currentLine = GoodStart;
+						theTextbox.endAtLine = GoodEnd;
+					}
+					
+					if (PlayerData.IsKiller) 
+					{
+						theTextbox.currentLine = BadStart;
+						theTextbox.endAtLine = BadEnd;
+					}
 				}
 
 			}

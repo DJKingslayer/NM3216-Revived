@@ -79,7 +79,7 @@ public class CrosshairControl : MonoBehaviour {
 	void FixedUpdate()
 	{
 		clampedX = Mathf.Clamp (transform.position.x, player.transform.position.x - 7.5f, player.transform.position.x + 7.5f);
-		clampedY = Mathf.Clamp (transform.position.y, player.transform.position.y - 2.5f, player.transform.position.y + 2.5f);
+		clampedY = Mathf.Clamp (transform.position.y, player.transform.position.y , player.transform.position.y + 5f);
 		transform.position = new Vector3 (clampedX, clampedY);
 
 		if (sceneFader.IsFaded && !	isStarted) {
