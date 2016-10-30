@@ -74,7 +74,11 @@ public class DialogueSelector : MonoBehaviour {
 
 			if (isEnd) 
 			{
-				align.SetAlign ();
+				if (PlayerData.Scene == 2) 
+				{
+					align.SetAlign ();
+				}
+
 				theTextbox.ReloadScript (theText,isEnd);
 				theTextbox.currentLine = startLine;
 

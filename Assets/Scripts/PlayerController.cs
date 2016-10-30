@@ -40,6 +40,8 @@ public class PlayerController : MonoBehaviour {
 
 	public float CrosshairCounter;
 
+	private bool recharging;
+
 	[SerializeField]
 	private float TeleportDistance;
 	
@@ -162,9 +164,17 @@ public class PlayerController : MonoBehaviour {
 
 	void LateUpdate()
 	{
-		if (hPCurrent != HPCurrent) {
+		if (hPCurrent != HPCurrent) 
+		{
 			hPCurrent = Mathf.Clamp (hPCurrent, 0, HPMax);
 			HPCurrent = hPCurrent;
+		}
+
+		// resets the main text if recharging is done
+		if(recharging && PounceCD == PounceCoolDown) 
+		{
+			recharging = false;
+			UI.text = "";
 		}
 	}
 
@@ -305,6 +315,11 @@ public class PlayerController : MonoBehaviour {
 
 		}
 
+		if (Input.GetKeyDown (KeyCode.Q)) 
+		{
+			Lives += 10;
+		}
+
 		if (SetKiller) 
 		{
 			return;
@@ -313,14 +328,26 @@ public class PlayerController : MonoBehaviour {
 		if (!IsKiller && PlayerData.AlignSet || !PlayerData.AlignSet) 
 		{
 			
-			if (Input.GetKeyDown (KeyCode.X) && PounceCD >= PounceCoolDown) 
+			if (Input.GetKeyDown (KeyCode.X) ) 
 			{
-				TeleIcon.SetActive (true);
+				if (PounceCD >= PounceCoolDown) 
+				{
+					TeleIcon.SetActive (true);
+				}
+
+				if (PounceCD < PounceCoolDown) 
+				{
+					UI.text = "Teleport Recharging";
+					recharging = true;
+				}
 			}
 
-			if(Input.GetKeyUp(KeyCode.X) && PounceCD >= PounceCoolDown)
+			if(Input.GetKeyUp(KeyCode.X))
 			{
-				Teleport ();
+				if (PounceCD >= PounceCoolDown) {
+					Teleport ();
+				}
+
 				TeleIcon.SetActive (false);
 			}
 
@@ -330,6 +357,8 @@ public class PlayerController : MonoBehaviour {
 				particles.Play ();
 			}
 		}
+
+
 	}
 
 	void Jump(){
@@ -496,6 +525,7 @@ public class PlayerController : MonoBehaviour {
 	void Dodge()
 	{
 		if (PounceCD >= 2) {
+			CancelInvoke ("makeVulnerable");
 			makeFaded ();
 			Invulnerability ();
 			PounceCD -= 2;
