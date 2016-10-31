@@ -31,4 +31,9 @@ public class HungerCtrl : MonoBehaviour {
 	{
 		currentHunger -= 1;
 	}
+
+	public void EatBerry()
+	{
+		currentHunger = TotalHunger;
+	}
 }

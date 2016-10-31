@@ -8,7 +8,6 @@ public class FlowerCollector : MonoBehaviour {
 
 	private Text flowerText;
 
-
 	// Use this for initialization
 	void Start () 
 	{

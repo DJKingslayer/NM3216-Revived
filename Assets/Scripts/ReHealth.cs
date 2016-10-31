@@ -8,15 +8,15 @@ public class ReHealth : MonoBehaviour {
 
 	private bool isUsed;
 
-	private SoundFX sFX;
-
 	private PlayerController playerController;
+
+	private HungerCtrl hunger;
 
 	// Use this for initialization
 	void Start () 
 	{
 		playerController = FindObjectOfType<PlayerController> ();
-		sFX = FindObjectOfType<SoundFX> ();
+		hunger = FindObjectOfType<HungerCtrl> ();
 		isUsed = false;
 	}
 	
@@ -31,8 +31,9 @@ public class ReHealth : MonoBehaviour {
 		{
 			if (!isUsed) 
 			{
-				playerController.IncHP (1, 4); 
-				sFX.PlaySFX (sFX.Ding, 1, 1);
+				playerController.IncHP (1, 1);
+				hunger.EatBerry ();
+
 			}
 
 			if (OneUse) 
