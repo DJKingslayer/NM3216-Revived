@@ -18,7 +18,7 @@ public class FlowerCollector : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		flowerText.text = "Flowers: " + flowersCollected.ToString ();
+		flowerText.text = "Flowers: " + flowersCollected.ToString () + "/6";
 	
 	}
 
