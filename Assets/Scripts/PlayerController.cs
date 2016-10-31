@@ -596,7 +596,6 @@ public class PlayerController : MonoBehaviour {
 	void spawnCrosshair()
 	{
 		Instantiate (Crosshair,crosshairLoc.position,Quaternion.identity);
-		print ("spawned Crosshair");
 	}
 
 	void Unhurt()
