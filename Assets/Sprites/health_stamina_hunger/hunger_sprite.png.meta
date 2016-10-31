@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 0f8e3ae30795a4b70916cf8d59c8ac25
-timeCreated: 1477466799
+guid: edae48edfe1734d5c8a732ff1b4c960c
+timeCreated: 1477916012
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -58,8 +58,8 @@ TextureImporter:
       name: hunger_sprite_0
       rect:
         serializedVersion: 2
-        x: 43
-        y: 340
+        x: 44
+        y: 355
         width: 207
         height: 207
       alignment: 0
@@ -71,8 +71,8 @@ TextureImporter:
       name: hunger_sprite_1
       rect:
         serializedVersion: 2
-        x: 266
-        y: 62
+        x: 251
+        y: 87
         width: 259
         height: 259
       alignment: 0

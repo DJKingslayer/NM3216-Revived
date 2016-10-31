@@ -17,8 +17,8 @@ public class PlayerController : MonoBehaviour {
 	public bool isAlive;
 	public bool CanMove;
 	public bool IsKiller;
-	public bool SetKiller;
 	public bool AlignTest;
+	public bool Iri, Fenrir;
 
 	//for testing only (makes player invulnerable)
 	public bool isTest;
@@ -115,11 +115,6 @@ public class PlayerController : MonoBehaviour {
 		if (PlayerData.AlignSet) 
 		{
 			IsKiller = PlayerData.IsKiller;
-		}
-
-		if (SetKiller) 
-		{
-			PlayerData.IsKiller = true;
 		}			
 	}
 	
@@ -225,7 +220,7 @@ public class PlayerController : MonoBehaviour {
 			if (CrosshairCounter <= 2) {
 
 				Invulnerable = false;
-				takeDamage (2);
+				takeDamage (1);
 				Destroy (other.gameObject);
 				Invoke ("spawnCrosshair", 3);
 			}
@@ -307,19 +302,18 @@ public class PlayerController : MonoBehaviour {
 			rb.AddForce (new Vector2 (0, jumpspeedY * -.6f));
 		}
 
-		if (IsKiller && PlayerData.AlignSet || !PlayerData.AlignSet ) 
+		if (Fenrir) 
 		{
-
 			//pounce
 			if (Input.GetKeyDown (KeyCode.V) && !isPouncing && !jumping) {
 				Pounce ();
 			}
-
+			
 			//Attack
 			if (Input.GetKeyDown (KeyCode.C) && !isPouncing && !Attacking) {
 				Attack ();
 			}
-
+			
 		}
 
 		if (Input.GetKeyDown (KeyCode.Q)) 
@@ -327,14 +321,10 @@ public class PlayerController : MonoBehaviour {
 			Lives += 10;
 		}
 
-		if (SetKiller) 
-		{
-			return;
-		}
 
-		if (!IsKiller && PlayerData.AlignSet || !PlayerData.AlignSet) 
+		if (Iri) 
 		{
-			
+			//Telefeedback
 			if (Input.GetKeyDown (KeyCode.X) ) 
 			{
 				if (PounceCD >= PounceCoolDown) 
@@ -357,6 +347,8 @@ public class PlayerController : MonoBehaviour {
 
 				TeleIcon.SetActive (false);
 			}
+
+
 
 			if (Input.GetKeyDown (KeyCode.Z)) 
 			{
