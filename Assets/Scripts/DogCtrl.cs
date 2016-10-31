@@ -4,7 +4,7 @@ using System.Collections;
 public class DogCtrl : MonoBehaviour {
 
 	public float speedX, JumpspeedY, JumpDelay, WalkRange;
-	public GameObject self;
+	public GameObject Splat;
 
 	private Rigidbody2D rb;
 	private bool facingRight;
@@ -70,12 +70,12 @@ public class DogCtrl : MonoBehaviour {
 		}
 
 		if (other.CompareTag ("Death")) {
-			Instantiate (self, startingPos, Quaternion.identity);
-			Destroy (gameObject);
+			transform.position = startingPos;
 		}
 
 		if (other.CompareTag ("Destroyer")) {
 			sfx.PlaySfx (sfx.SnakeDeath);
+			Instantiate (Splat,transform.position,Quaternion.identity);
 			Destroy (gameObject);	
 		}
 

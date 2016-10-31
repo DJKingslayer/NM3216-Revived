@@ -370,7 +370,8 @@ public class PlayerController : MonoBehaviour {
 
 	void Pounce(){
 
-		if (PounceCD >= PounceCoolDown) {
+		if (PounceCD >= PounceCoolDown) 
+		{
 			isPouncing = true;
 			jumping = true;
 			anim.SetInteger ("State", 2);
@@ -390,6 +391,13 @@ public class PlayerController : MonoBehaviour {
 
 			Instantiate (Pouncer, PouncePos.position, Quaternion.identity, gameObject.transform);
 		}
+
+		if (PounceCD < PounceCoolDown) 
+		{
+			UI.text = "Pounce Recharging";
+			recharging = true;
+		}
+			
 	}
 
 	void flip () 

@@ -34,22 +34,21 @@ public class DestroyOther : MonoBehaviour {
 		}
 
 		// Please Add playerdata.iskiller
-		if (other.gameObject.CompareTag ("Marker"))
-		{
-			float chance = .5f;
-
-			if (playerController.isPouncing) 
-			{
-				chance = 1;
+		if (PlayerData.IsKiller) {
+			if (other.gameObject.CompareTag ("Marker")) {
+				float chance = .5f;
+			
+				if (playerController.isPouncing) {
+					chance = 1;
+				}
+			
+				playerController.IncHP (chance, 1);
+				playerController.CountDeath ();
+			
+				story.CountMarker ();
+			
+				Destroy (gameObject);
 			}
-
-			playerController.IncHP (chance,1);
-			playerController.CountDeath ();
-
-			story.CountMarker ();
-
-			Destroy (gameObject);
-			print ("counting");
 		}
 
 	}

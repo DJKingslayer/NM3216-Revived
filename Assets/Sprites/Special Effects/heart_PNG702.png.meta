@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: bb3a1779e75224c0bb7353fd58b33842
-timeCreated: 1477674097
+guid: 3171ef4d6a7c64142ae19337f548233e
+timeCreated: 1477873542
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -53,7 +53,7 @@ TextureImporter:
     serializedVersion: 2
     sprites: []
     outline: []
-  spritePackingTag: Grounds
+  spritePackingTag: Effects
   userData: 
   assetBundleName: 
   assetBundleVariant: 

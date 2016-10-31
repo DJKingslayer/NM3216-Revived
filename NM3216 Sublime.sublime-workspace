@@ -1,0 +1,384 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"sw",
+				"swap_soulbomb"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "Assets/Text/4 - Evade End.txt",
+			"settings":
+			{
+				"buffer_size": 54,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "ReHealth.cs",
+			"settings":
+			{
+				"buffer_size": 704,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+		],
+		"width": 392.0
+	},
+	"console":
+	{
+		"height": 146.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/David/Desktop/NM 3216 (27 Oct - WORKING)/Assets/Audio/Endless Runner.meta",
+		"/Users/David/Desktop/NM 3216 (27 Oct - WORKING)/Assets/prefabs/Enemies/FENRIR_BIRD_MAIN.prefab~Meta File edits",
+		"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/mods/workshop-503177016/scripts/speech_noodle.lua",
+		"/Users/David/Class test/Assets/Scripts/CameraController.cs",
+		"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/data/scripts/prefabs/spear.lua",
+		"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/data/scripts/prefabs/axe_pickaxe.lua",
+		"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/mods/workshop-498383066/scripts/prefabs/anniefire.lua",
+		"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/data/scripts/modutil.lua",
+		"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/data/scripts/components/builder.lua",
+		"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/data/scripts/strings.lua",
+		"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/data/scripts/actions.lua",
+		"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/data/scripts/componentactions.lua",
+		"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/data/scripts/components/weapon.lua",
+		"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/mods/workshop-498383066/scripts/prefabs/annie.lua",
+		"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/data/scripts/prefabs/anim_test.lua",
+		"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/mods/Soul Bomb/modmain.lua",
+		"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/mods/Soul Bomb/scripts/prefabs/soulbomb.lua",
+		"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/mods/workshop-498383066/scripts/prefabs/anniepack.lua",
+		"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/data/scripts/recipes.lua",
+		"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/mods/Soul Bomb/modinfo.lua",
+		"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/mods/workshop-498383066/images/inventoryimages/anniefire.tex",
+		"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/mods/Soul Bomb/scripts/prefabs/anniepack.lua",
+		"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/mods/workshop-498383066/modmain.lua",
+		"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/mods/workshop-478005098/modmain.lua",
+		"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/mods/workshop-478005098/modinfo.lua",
+		"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/mods/workshop-488009136/scripts/prefabs/zupalexsingredients.lua",
+		"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/data/scripts/widgets/ingredientui.lua",
+		"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/data/scripts/prefabs/gears.lua",
+		"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/mods/workshop-380079744/modmain.lua",
+		"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/data/scripts/prefabs/staff.lua",
+		"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/mods/workshop-380079744/scripts/prefabs/luffy.lua",
+		"/Users/David/Desktop/Experiments/annie/atlas-0.tex",
+		"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/mods/workshop-461246470/scripts/prefabs/noodle.lua",
+		"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/mods/workshop-345692228/modinfo.lua",
+		"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/data/scripts/prefabs/wilson.lua",
+		"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/data/scripts/prefabs/willow.lua",
+		"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/data/scripts/tuning.lua"
+	],
+	"find":
+	{
+		"height": 37.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/data/scripts,-*./prefabs",
+			"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/data/scripts",
+			"",
+			"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/data/scripts",
+			"",
+			"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/mods/Soul Bomb",
+			"",
+			"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/mods/workshop-380079744",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"anniefire",
+			"addrecipe",
+			"AddRecipe",
+			"sciencemachine",
+			"science",
+			"AddComponent",
+			"AddComponent=",
+			"=AddComponent",
+			"f.AddComponent",
+			"AddComponent =",
+			"function inst.AddComponent",
+			"function inst:AddComponent",
+			"inst:AddComponent",
+			"AddComponent =",
+			"= AddComponent",
+			"function",
+			"function AddComponent",
+			"RegisterComponentActions",
+			"function AddComponent",
+			"function AddComponent:",
+			"function AddComponent",
+			"function AddComponent ()",
+			"fast",
+			"fasttravel",
+			"fast",
+			"SCENE",
+			"rangedlighter",
+			"AddTag =",
+			"backpack",
+			"HasTag",
+			"rangedlighter",
+			"inst =",
+			"sharp",
+			"ARM_",
+			"ARM_carry",
+			"AnimState",
+			"ARM_carry",
+			"fire",
+			"AnimState:Show",
+			"anniefire",
+			"anniepack",
+			"ANNIEPACK",
+			"mod_env",
+			"craftable gears",
+			"staff",
+			"inst",
+			"willow_sanity"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"soulbomb"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "Assets/Text/4 - Evade End.txt",
+					"settings":
+					{
+						"buffer_size": 54,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								54,
+								54
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "ReHealth.cs",
+					"settings":
+					{
+						"buffer_size": 704,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								396,
+								396
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C#/C#.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 37.0
+	},
+	"input":
+	{
+		"height": 34.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 118.0
+	},
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"re",
+				"ReHealth.cs"
+			],
+			[
+				"str",
+				"dont_starve/data/scripts/strings.lua"
+			],
+			[
+				"soul",
+				"dont_starve/mods/Soul Bomb/scripts/prefabs/soulbomb.lua"
+			],
+			[
+				"actions",
+				"dont_starve/data/scripts/actions.lua"
+			],
+			[
+				"annie",
+				"dont_starve/mods/workshop-498383066/scripts/prefabs/annie.lua"
+			],
+			[
+				"anniepack.lu",
+				"dont_starve/mods/workshop-498383066/scripts/prefabs/anniepack.lua"
+			],
+			[
+				"anims",
+				"dont_starve/data/scripts/prefabs/anim_test.lua"
+			],
+			[
+				"weapon",
+				"dont_starve/data/scripts/components/weapon.lua"
+			],
+			[
+				"spear",
+				"dont_starve/data/scripts/prefabs/spear.lua"
+			],
+			[
+				"anniefire",
+				"dont_starve/mods/workshop-498383066/scripts/prefabs/anniefire.lua"
+			],
+			[
+				"anniep",
+				"dont_starve/mods/workshop-498383066/scripts/prefabs/anniepack.lua"
+			],
+			[
+				"rec",
+				"dont_starve/data/scripts/recipes.lua"
+			],
+			[
+				"string",
+				"dont_starve/data/scripts/strings.lua"
+			],
+			[
+				"ingredient",
+				"dont_starve/mods/workshop-488009136/scripts/prefabs/zupalexsingredients.lua"
+			],
+			[
+				"gears",
+				"dont_starve/data/scripts/prefabs/gears.lua"
+			],
+			[
+				"noodle.lua",
+				"dont_starve/mods/workshop-461246470/scripts/prefabs/noodle.lua"
+			],
+			[
+				"luffy.l",
+				"dont_starve/mods/workshop-380079744/scripts/prefabs/luffy.lua"
+			],
+			[
+				"staff",
+				"dont_starve/data/scripts/prefabs/staff.lua"
+			],
+			[
+				"wilson",
+				"dont_starve/data/scripts/prefabs/wilson.lua"
+			],
+			[
+				"will",
+				"dont_starve/data/scripts/prefabs/willow.lua"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 250.0,
+	"status_bar_visible": true
+}
