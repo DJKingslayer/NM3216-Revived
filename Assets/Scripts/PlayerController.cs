@@ -198,6 +198,11 @@ public class PlayerController : MonoBehaviour {
 
 		}
 
+		if(other.gameObject.CompareTag("Obstacle"))
+			{
+				takeDamage (1);
+			}
+
 	}
 
 	void OnTriggerEnter2D (Collider2D other)
