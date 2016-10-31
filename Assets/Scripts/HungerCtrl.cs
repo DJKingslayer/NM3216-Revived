@@ -21,10 +21,7 @@ public class HungerCtrl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-//		hungerBar.fillAmount = Mathf.Lerp (0f, 1f, (currentHunger / TotalHunger));
-		hungerBar.fillAmount = Mathf.Lerp ((currentHunger / TotalHunger), hungerBar.fillAmount, -Time.deltaTime);
-
-	
+		hungerBar.fillAmount = Mathf.Lerp ((currentHunger / TotalHunger), hungerBar.fillAmount, -Time.deltaTime);	
 	}
 
 	void decreaseCurr()
