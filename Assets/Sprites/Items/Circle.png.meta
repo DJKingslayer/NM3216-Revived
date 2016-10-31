@@ -7,7 +7,7 @@ TextureImporter:
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -26,7 +26,7 @@ TextureImporter:
   cubemapConvolutionSteps: 7
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: 4
+  textureFormat: -3
   maxTextureSize: 2048
   textureSettings:
     filterMode: 0
@@ -181,7 +181,7 @@ TextureImporter:
       - {x: -0.29345578, y: 1.9783537}
       - {x: -0.1960288, y: 1.99037}
       - {x: -0.09812956, y: 1.9975911}
-  spritePackingTag: 
+  spritePackingTag: Items
   userData: 
   assetBundleName: 
   assetBundleVariant: 
