@@ -122,13 +122,11 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-
-
 		// On Death
-		if (hPCurrent <= 0) {
+		if (hPCurrent <= 0) 
+		{
 			isAlive = false;
 		}
-
 	}
 
 	void FixedUpdate()
@@ -297,7 +295,7 @@ public class PlayerController : MonoBehaviour {
 		{
 			Jump ();
 			jumping = true;
-		}else
+		}
 
 		//fall faster
 		if (Input.GetKeyDown (KeyCode.DownArrow)) 
@@ -598,6 +596,7 @@ public class PlayerController : MonoBehaviour {
 	void spawnCrosshair()
 	{
 		Instantiate (Crosshair,crosshairLoc.position,Quaternion.identity);
+		print ("spawned Crosshair");
 	}
 
 	void Unhurt()
