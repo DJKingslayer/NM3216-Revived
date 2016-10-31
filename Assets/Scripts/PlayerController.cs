@@ -297,7 +297,7 @@ public class PlayerController : MonoBehaviour {
 		{
 			Jump ();
 			jumping = true;
-		}
+		}else
 
 		//fall faster
 		if (Input.GetKeyDown (KeyCode.DownArrow)) 
