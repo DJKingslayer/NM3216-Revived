@@ -337,7 +337,7 @@ public class PlayerController : MonoBehaviour {
 
 				if (PounceCD < PounceCoolDown) 
 				{
-					UI.text = "Teleport Recharging";
+					UI.text = "Spirit Leap Recharging";
 					recharging = true;
 				}
 			}
