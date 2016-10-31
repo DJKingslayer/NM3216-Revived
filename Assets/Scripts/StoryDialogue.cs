@@ -32,7 +32,8 @@ public class StoryDialogue : MonoBehaviour {
 		{
 			if (counterB == 25) 
 			{
-				Invoke ("delayHowl", 3);				
+				Invoke ("delayHowl", 3);
+				counterB = 0;
 			}
 		}
 

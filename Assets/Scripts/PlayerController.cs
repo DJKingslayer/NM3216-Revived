@@ -116,7 +116,11 @@ public class PlayerController : MonoBehaviour {
 		{
 			IsKiller = PlayerData.IsKiller;
 		}
-			
+
+		if (SetKiller) 
+		{
+			PlayerData.IsKiller = true;
+		}			
 	}
 	
 	// Update is called once per frame
