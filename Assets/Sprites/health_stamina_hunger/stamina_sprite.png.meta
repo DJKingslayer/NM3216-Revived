@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: e39a3152fbdebed468674a89ef097eb8
-timeCreated: 1477596208
+guid: 95e7513174edf414191bde5d5f4f4fca
+timeCreated: 1477466817
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: stamina_sprite 1_0
-    21300002: stamina_sprite 1_1
+    21300000: stamina_sprite_0
+    21300002: stamina_sprite_1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -55,11 +55,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: stamina_sprite 1_0
+      name: stamina_sprite_0
       rect:
         serializedVersion: 2
-        x: 64
-        y: 339
+        x: 29
+        y: 346
         width: 207
         height: 207
       alignment: 0
@@ -68,11 +68,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: stamina_sprite 1_1
+      name: stamina_sprite_1
       rect:
         serializedVersion: 2
-        x: 291
-        y: 47
+        x: 272
+        y: 64
         width: 259
         height: 259
       alignment: 0
@@ -81,7 +81,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     outline: []
-  spritePackingTag: UI
+  spritePackingTag: 
   userData: 
   assetBundleName: 
   assetBundleVariant: 

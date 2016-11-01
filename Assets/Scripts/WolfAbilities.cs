@@ -24,6 +24,5 @@ public class WolfAbilities : MonoBehaviour {
 		{
 			Destroy (gameObject, .5f);
 		}
-	
 	}
 }

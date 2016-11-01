@@ -4,7 +4,7 @@ using System.Collections;
 public class DogCtrl : MonoBehaviour {
 
 	public float speedX, JumpspeedY, JumpDelay, WalkRange;
-	public GameObject Splat;
+	public GameObject self;
 
 	private Rigidbody2D rb;
 	private bool facingRight;
@@ -13,8 +13,6 @@ public class DogCtrl : MonoBehaviour {
 	private float startingX;
 
 	private Vector3 startingPos;
-
-	private SfxCtrl sfx;
 
 
 	// Use this for initialization
@@ -25,7 +23,6 @@ public class DogCtrl : MonoBehaviour {
 		startingX = transform.position.x;
 		InvokeRepeating ("CheckTurn",2,2);
 //		InvokeRepeating ("Turn", 5, Random.Range (1, 5));
-		sfx = FindObjectOfType<SfxCtrl>();
 
 		startingPos = gameObject.transform.position;
 	}
@@ -70,16 +67,9 @@ public class DogCtrl : MonoBehaviour {
 		}
 
 		if (other.CompareTag ("Death")) {
-			transform.position = startingPos;
+			Instantiate (self, startingPos, Quaternion.identity);
+			Destroy (gameObject);
 		}
-
-		if (other.CompareTag ("Destroyer")) {
-			sfx.PlaySfx (sfx.SnakeDeath);
-			Instantiate (Splat,transform.position,Quaternion.identity);
-			Destroy (gameObject);	
-		}
-
-
 	}
 
 
