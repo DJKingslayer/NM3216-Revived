@@ -11,22 +11,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "Assets/Text/4 - Evade End.txt",
-			"settings":
-			{
-				"buffer_size": 54,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "ReHealth.cs",
-			"settings":
-			{
-				"buffer_size": 704,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -52,6 +36,9 @@
 	},
 	"file_history":
 	[
+		"/Users/David/GitHub/NM3216-Revived/Assets/Text/4 - Evade End.txt",
+		"/Users/David/GitHub/NM3216-Revived/ReHealth.cs",
+		"/Users/David/GitHub/NM3216-Revived/PlayerController.cs",
 		"/Users/David/Desktop/NM 3216 (27 Oct - WORKING)/Assets/Audio/Endless Runner.meta",
 		"/Users/David/Desktop/NM 3216 (27 Oct - WORKING)/Assets/prefabs/Enemies/FENRIR_BIRD_MAIN.prefab~Meta File edits",
 		"/Users/David/Library/Application Support/Steam/SteamApps/common/Don't Starve Together/dontstarve_steam.app/Contents/mods/workshop-503177016/scripts/speech_noodle.lua",
@@ -115,6 +102,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"UI.text",
+			"Recharging",
+			"recharging",
+			"recharge",
+			"teleport",
 			"anniefire",
 			"addrecipe",
 			"AddRecipe",
@@ -180,62 +172,8 @@
 	"groups":
 	[
 		{
-			"selected": 1,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "Assets/Text/4 - Evade End.txt",
-					"settings":
-					{
-						"buffer_size": 54,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								54,
-								54
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "ReHealth.cs",
-					"settings":
-					{
-						"buffer_size": 704,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								396,
-								396
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C#/C#.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -284,6 +222,10 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"player",
+				"PlayerController.cs"
+			],
 			[
 				"re",
 				"ReHealth.cs"
