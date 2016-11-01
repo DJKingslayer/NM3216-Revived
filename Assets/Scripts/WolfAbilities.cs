@@ -9,8 +9,7 @@ public class WolfAbilities : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		playerController = GameObject.Find("Player").GetComponent<PlayerController> ();
-
+		playerController = FindObjectOfType<PlayerController> ();
 	}
 	
 	// Update is called once per frame
