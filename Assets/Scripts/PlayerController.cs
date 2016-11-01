@@ -374,7 +374,7 @@ public class PlayerController : MonoBehaviour {
 			isPouncing = true;
 			jumping = true;
 			anim.SetInteger ("State", 2);
-			PounceCD = 0;
+			PounceCD -= 2;
 			source.PlayOneShot (Pounce1);
 
 
