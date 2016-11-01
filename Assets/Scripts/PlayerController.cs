@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
-
 	public float speedX;
 	public float jumpspeedY;
 	public Vector2 KnockbackForce;
@@ -17,8 +16,6 @@ public class PlayerController : MonoBehaviour {
 	public bool isAlive;
 	public bool CanMove;
 	public bool IsKiller;
-	public bool AlignTest;
-	public bool Iri, Fenrir;
 
 	//for testing only (makes player invulnerable)
 	public bool isTest;
@@ -40,8 +37,6 @@ public class PlayerController : MonoBehaviour {
 
 	public float CrosshairCounter;
 
-	private bool recharging;
-
 	[SerializeField]
 	private float TeleportDistance;
 	
@@ -50,7 +45,7 @@ public class PlayerController : MonoBehaviour {
 	
 	public Text UI;
 
-	public AudioClip Ouch,BasicAttack,Pounce1,PhaseShift,SpiritLeap,Growl,Howl,SadHowl,Jump1;
+	public AudioClip Ouch,Boom;
 
 	private Rigidbody2D rb;
 	private Animator anim;
@@ -64,10 +59,6 @@ public class PlayerController : MonoBehaviour {
 
 	private Color cFull;
 
-	private StoryDialogue storyDialogue;
-
-	private ParticleSystem particles;
-
 
 	// Use this for initialization
 	void Start () {
@@ -77,15 +68,11 @@ public class PlayerController : MonoBehaviour {
 		wolfSprite = gameObject.GetComponent<SpriteRenderer> ();
 		sceneFader = GameObject.Find ("Cover").GetComponent<SceneFader> ();	
 		source = gameObject.GetComponent<AudioSource>();
-		particles = gameObject.GetComponent<ParticleSystem> ();
 		cFull = wolfSprite.color;
-
-		storyDialogue = FindObjectOfType<StoryDialogue> ();
-
-		source.pitch = 1;
 
 		isHurt = false;
 		jumping = false;
+		facingRight = true;
 		isPouncing = false;
 		Invulnerable = false;
 		isAlive = true;
@@ -107,25 +94,26 @@ public class PlayerController : MonoBehaviour {
 
 		TeleIcon.SetActive (false);
 
-		if (transform.localScale.x > 0) 
-		{
-			facingRight = true;
-		}
-
 		if (PlayerData.AlignSet) 
 		{
 			IsKiller = PlayerData.IsKiller;
-		}			
+		}
+
+
+		//only proceed to chance alignment if alignment has already been set.
+
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
+
+
 		// On Death
-		if (hPCurrent <= 0) 
-		{
+		if (hPCurrent <= 0) {
 			isAlive = false;
 		}
+
 	}
 
 	void FixedUpdate()
@@ -161,17 +149,9 @@ public class PlayerController : MonoBehaviour {
 
 	void LateUpdate()
 	{
-		if (hPCurrent != HPCurrent) 
-		{
+		if (hPCurrent != HPCurrent) {
 			hPCurrent = Mathf.Clamp (hPCurrent, 0, HPMax);
 			HPCurrent = hPCurrent;
-		}
-
-		// resets the main text if recharging is done
-		if(recharging && PounceCD == PounceCoolDown) 
-		{
-			recharging = false;
-			UI.text = "";
 		}
 	}
 
@@ -183,7 +163,7 @@ public class PlayerController : MonoBehaviour {
 
 		}
 
-		if(other.gameObject.CompareTag("Enemies") || other.gameObject.CompareTag("Marker")  ){
+		if(other.gameObject.CompareTag("Enemies")){
 			takeDamage (1);
 
 		}
@@ -195,16 +175,11 @@ public class PlayerController : MonoBehaviour {
 
 		}
 
-		if(other.gameObject.CompareTag("Obstacle"))
-			{
-				takeDamage (1);
-			}
-
 	}
 
 	void OnTriggerEnter2D (Collider2D other)
 	{
-		if(other.gameObject.CompareTag("Enemies") || other.gameObject.CompareTag("Marker")){
+		if(other.gameObject.CompareTag("Enemies")){
 			takeDamage (1);
 		}
 
@@ -220,16 +195,12 @@ public class PlayerController : MonoBehaviour {
 			if (CrosshairCounter <= 2) {
 
 				Invulnerable = false;
-				takeDamage (1);
+				takeDamage (2);
 				Destroy (other.gameObject);
 				Invoke ("spawnCrosshair", 3);
+				source.PlayOneShot (Boom);
 			}
 
-		}
-
-		if (other.gameObject.CompareTag ("Marker")) 
-		{
-			storyDialogue.CountMarker ();
 		}
 
 		if (other.gameObject.CompareTag("Obstacle"))
@@ -302,81 +273,56 @@ public class PlayerController : MonoBehaviour {
 			rb.AddForce (new Vector2 (0, jumpspeedY * -.6f));
 		}
 
-		if (Fenrir) 
-		{
+		if (IsKiller && PlayerData.AlignSet || !PlayerData.AlignSet) {
+
 			//pounce
 			if (Input.GetKeyDown (KeyCode.V) && !isPouncing && !jumping) {
 				Pounce ();
 			}
-			
+
 			//Attack
 			if (Input.GetKeyDown (KeyCode.C) && !isPouncing && !Attacking) {
 				Attack ();
 			}
+
+		}
+
+
+		if (!IsKiller && PlayerData.AlignSet || !PlayerData.AlignSet) 
+		{
 			
-		}
-
-		if (Input.GetKeyDown (KeyCode.Q)) 
-		{
-			Lives += 10;
-		}
-
-
-		if (Iri) 
-		{
-			//Telefeedback
-			if (Input.GetKeyDown (KeyCode.X) ) 
+			if (Input.GetKeyDown (KeyCode.X) && PounceCD >= PounceCoolDown) 
 			{
-				if (PounceCD >= PounceCoolDown) 
-				{
-					TeleIcon.SetActive (true);
-				}
-
-				if (PounceCD < PounceCoolDown) 
-				{
-					UI.text = "Spirit Leap Recharging";
-					recharging = true;
-				}
+				TeleIcon.SetActive (true);
 			}
 
-			if(Input.GetKeyUp(KeyCode.X))
+			if(Input.GetKeyUp(KeyCode.X) && PounceCD >= PounceCoolDown)
 			{
-				if (PounceCD >= PounceCoolDown) {
-					Teleport ();
-				}
-
+				Teleport ();
 				TeleIcon.SetActive (false);
 			}
-
-
 
 			if (Input.GetKeyDown (KeyCode.Z)) 
 			{
 				Dodge ();
-				particles.Play ();
 			}
 		}
-
-
 	}
 
 	void Jump(){
 
 		rb.AddForce (new Vector2 (0,jumpspeedY));
-		source.PlayOneShot (Jump1);
+
 	}
 
 
 	void Pounce(){
 
-		if (PounceCD >= PounceCoolDown) 
-		{
+		if (PounceCD >= PounceCoolDown) {
 			isPouncing = true;
 			jumping = true;
 			anim.SetInteger ("State", 2);
 			PounceCD = 0;
-			source.PlayOneShot (Pounce1);
-
 
 			if (facingRight) {
 				rb.AddForce (PounceForce);
@@ -390,13 +336,6 @@ public class PlayerController : MonoBehaviour {
 
 			Instantiate (Pouncer, PouncePos.position, Quaternion.identity, gameObject.transform);
 		}
-
-		if (PounceCD < PounceCoolDown) 
-		{
-			UI.text = "Pounce Recharging";
-			recharging = true;
-		}
-			
 	}
 
 	void flip () 
@@ -422,7 +361,6 @@ public class PlayerController : MonoBehaviour {
 
 			Invoke ("AttackReset", .5f);
 //			anim.SetInteger ("State", 1);
-			source.PlayOneShot(BasicAttack);
 		}
 
 	}
@@ -497,7 +435,6 @@ public class PlayerController : MonoBehaviour {
 	void Teleport()
 	{
 		Vector3 temp = gameObject.transform.position;
-		source.PlayOneShot (SpiritLeap);
 
 		if (facingRight) {
 			temp.x += TeleportDistance;
@@ -512,7 +449,7 @@ public class PlayerController : MonoBehaviour {
 
 			if (temp.x < RightBarrier.transform.position.x && temp.x > LeftBarrier.transform.position.y) {
 				gameObject.transform.position = temp;
-				PounceCD -= 2;
+				PounceCD = 0;
 
 
 				makeFaded ();
@@ -532,13 +469,11 @@ public class PlayerController : MonoBehaviour {
 	void Dodge()
 	{
 		if (PounceCD >= 2) {
-			CancelInvoke ("makeVulnerable");
 			makeFaded ();
 			Invulnerability ();
 			PounceCD -= 2;
 			Physics2D.IgnoreLayerCollision (10, 11, true);
 			Invoke ("makeVulnerable", 3);
-			source.PlayOneShot (PhaseShift);
 		}
 	}
 
@@ -602,9 +537,7 @@ public class PlayerController : MonoBehaviour {
 
 	public void CountDeath ()
 	{
-		if (AlignTest) {
-			PlayerData.KillCount += 1;
-		}
+		PlayerData.KillCount += 1;
 	}
 
 

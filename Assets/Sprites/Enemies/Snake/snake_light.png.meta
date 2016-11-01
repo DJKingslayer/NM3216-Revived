@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 56d9079173404445fb606ad4f1f6e410
-timeCreated: 1477918020
+guid: c92d11ffc362e604cbd220723cf03c0b
+timeCreated: 1477400675
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -14,10 +14,12 @@ TextureImporter:
     21300014: snake_light_7
     21300016: snake_light_8
     21300018: snake_light_9
+    21300020: snake_light_10
+    21300022: snake_light_11
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -66,10 +68,10 @@ TextureImporter:
       name: snake_light_0
       rect:
         serializedVersion: 2
-        x: 30
-        y: 333.3333
-        width: 217.5
-        height: 166.66667
+        x: 36
+        y: 366
+        width: 175
+        height: 95
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -79,10 +81,10 @@ TextureImporter:
       name: snake_light_1
       rect:
         serializedVersion: 2
-        x: 247
-        y: 333.3333
-        width: 217.5
-        height: 166.66667
+        x: 259
+        y: 353
+        width: 165
+        height: 95
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -92,10 +94,10 @@ TextureImporter:
       name: snake_light_2
       rect:
         serializedVersion: 2
-        x: 464
-        y: 333.3333
-        width: 217.5
-        height: 166.66667
+        x: 482
+        y: 352
+        width: 140
+        height: 98
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -105,10 +107,10 @@ TextureImporter:
       name: snake_light_3
       rect:
         serializedVersion: 2
-        x: 681
-        y: 333.3333
-        width: 217.5
-        height: 166.66667
+        x: 708
+        y: 350
+        width: 139
+        height: 98
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,10 +120,10 @@ TextureImporter:
       name: snake_light_4
       rect:
         serializedVersion: 2
-        x: 30
-        y: 167.33333
-        width: 217.5
-        height: 166.66667
+        x: 72
+        y: 186
+        width: 124
+        height: 101
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,10 +133,10 @@ TextureImporter:
       name: snake_light_5
       rect:
         serializedVersion: 2
-        x: 247
-        y: 167.33333
-        width: 217.5
-        height: 166.66667
+        x: 77
+        y: 284
+        width: 8
+        height: 6
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -144,10 +146,10 @@ TextureImporter:
       name: snake_light_6
       rect:
         serializedVersion: 2
-        x: 464
-        y: 167.33333
-        width: 217.5
-        height: 166.66667
+        x: 286
+        y: 186
+        width: 138
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -157,10 +159,10 @@ TextureImporter:
       name: snake_light_7
       rect:
         serializedVersion: 2
-        x: 681
-        y: 167.33333
-        width: 217.5
-        height: 166.66667
+        x: 299
+        y: 281
+        width: 7
+        height: 7
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -170,10 +172,10 @@ TextureImporter:
       name: snake_light_8
       rect:
         serializedVersion: 2
-        x: 30
-        y: 1.3333282
-        width: 217.5
-        height: 166.66667
+        x: 501
+        y: 186
+        width: 139
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -183,10 +185,36 @@ TextureImporter:
       name: snake_light_9
       rect:
         serializedVersion: 2
-        x: 247
-        y: 1.3333282
-        width: 217.5
-        height: 166.66667
+        x: 708
+        y: 192
+        width: 140
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: snake_light_10
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 38
+        width: 165
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: snake_light_11
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 38
+        width: 175
+        height: 95
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

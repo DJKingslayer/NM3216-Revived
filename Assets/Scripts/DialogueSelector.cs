@@ -12,23 +12,18 @@ public class DialogueSelector : MonoBehaviour {
 	public int GoodStart, GoodEnd;
 	public int BadStart, BadEnd;
 
-	public AudioClip Ding;
-
-	private TextBoxManager theTextbox;
+	public TextBoxManager theTextbox;
 
 	public bool DestroyWhenActivated;
 	public bool isEnd, hasActivated;
 	public bool UseFader;
 	public bool FreezePlayer;
-	public bool MultiEnd;
 
 	private SceneFader fader;
 
 	public GameObject Monster;
 
 	private PlayerController playerController;
-
-	private SfxCtrl sfx;
 
 
 	// Use this for initialization
@@ -38,7 +33,6 @@ public class DialogueSelector : MonoBehaviour {
 		fader = FindObjectOfType<SceneFader> ();
 		playerController = FindObjectOfType<PlayerController> ();
 		align = FindObjectOfType<AlignmentCtrl> ();
-		sfx = FindObjectOfType<SfxCtrl> ();
 
 		hasActivated = false;	
 	}
@@ -52,8 +46,6 @@ public class DialogueSelector : MonoBehaviour {
 	{
 		if (other.name == "Player") 
 		{
-
-			sfx.PlaySfx (Ding);
 			// normal Running
 			if (!isEnd) 
 			{
@@ -74,26 +66,19 @@ public class DialogueSelector : MonoBehaviour {
 
 			if (isEnd) 
 			{
-				if (PlayerData.Scene == 2) 
+				align.SetAlign ();
+				theTextbox.ReloadScript (theText,isEnd);
+
+				if (!PlayerData.IsKiller) 
 				{
-					align.SetAlign ();
+					theTextbox.currentLine = GoodStart;
+					theTextbox.endAtLine = GoodEnd;
 				}
 
-				theTextbox.ReloadScript (theText,isEnd);
-				theTextbox.currentLine = startLine;
-
-				if (MultiEnd) 
+				if (PlayerData.IsKiller) 
 				{
-					if (!PlayerData.IsKiller) {
-						theTextbox.currentLine = GoodStart;
-						theTextbox.endAtLine = GoodEnd;
-					}
-					
-					if (PlayerData.IsKiller) 
-					{
-						theTextbox.currentLine = BadStart;
-						theTextbox.endAtLine = BadEnd;
-					}
+					theTextbox.currentLine = BadStart;
+					theTextbox.endAtLine = BadEnd;
 				}
 
 			}
@@ -108,7 +93,7 @@ public class DialogueSelector : MonoBehaviour {
 
 			if (DestroyWhenActivated) 
 			{
-				gameObject.SetActive (false);
+				Destroy (gameObject);
 			}
 
 

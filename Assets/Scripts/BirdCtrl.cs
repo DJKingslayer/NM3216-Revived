@@ -9,8 +9,6 @@ public class BirdCtrl : MonoBehaviour {
 
 	public GameObject Bird;
 
-	private SfxCtrl sfx;
-
 	private Rigidbody2D rb;
 
 	private Vector3 originalPos;
@@ -34,8 +32,6 @@ public class BirdCtrl : MonoBehaviour {
 		rb.velocity = new Vector2(-Speed,0);
 
 		float spawnRan = Random.Range (5f, 7f);
-
-		sfx = FindObjectOfType<SfxCtrl>();
 
 		if (RespawnTimer == 0) 
 		{
@@ -71,17 +67,6 @@ public class BirdCtrl : MonoBehaviour {
 		{
 			Destroy (gameObject);
 		}
-	}
-
-	void OnTriggerEnter2D (Collider2D other)
-	{
-		
-		if (other.CompareTag ("Destroyer")) {
-			sfx.PlaySfx (sfx.BirdDeath);
-			Destroy (gameObject);	
-		}
-
-
 	}
 
 	void Respawn ()

@@ -34,8 +34,7 @@ public class PlatformCtrl : MonoBehaviour {
 		if (player.transform.position.y < gameObject.transform.position.y) {
 			abovePlayer = true;
 		} else abovePlayer = false;
-		
-		
+
 		if (playerController.jumping || abovePlayer )
 		{
 			Physics2D.IgnoreCollision (playerCollider, platformCollider, true);
@@ -48,7 +47,6 @@ public class PlatformCtrl : MonoBehaviour {
 			Physics2D.IgnoreCollision (playerCollider, platformCollider, false);
 		}
 			
-	
 	}
 
 }
