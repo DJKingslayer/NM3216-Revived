@@ -113,6 +113,11 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 
 	void FixedUpdate()
 	{
+		if (!CanMove) 
+		{
+			return;
+		}
+
 		// Player Movement
 		if (isAlive && sceneFader.IsFaded) 
 		{
@@ -135,10 +140,7 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 			makeVulnerable ();
 		}
 
-		if (!CanMove) 
-		{
-			return;
-		}
+
 	}
 
 	void LateUpdate()
