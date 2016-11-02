@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class DialogueSelector : MonoBehaviour {
 
@@ -74,13 +75,16 @@ public class DialogueSelector : MonoBehaviour {
 
 			if (isEnd) 
 			{
-				if (PlayerData.Scene == 2) 
+				Scene CheckScene = SceneManager.GetActiveScene ();
+				if (CheckScene.name == "Tutorial_Learning_Portion") 
 				{
 					align.SetAlign ();
+					print ("AlignmentSet");
 				}
 
 				theTextbox.ReloadScript (theText,isEnd);
 				theTextbox.currentLine = startLine;
+				theTextbox.FixEndLine ();
 
 				if (MultiEnd) 
 				{

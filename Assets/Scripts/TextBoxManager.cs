@@ -103,13 +103,13 @@ public class TextBoxManager : MonoBehaviour
 
 			endOfStage = stageEnd;
 
-			if (!PlayerData.AlignSet) 
-			{
+//			if (!PlayerData.AlignSet) 
+//			{
 				if (endAtLine == 0) 
 				{
 					endAtLine = textLines.Length - 1;
 				}
-			}
+//			}
 		}
 	}
 
