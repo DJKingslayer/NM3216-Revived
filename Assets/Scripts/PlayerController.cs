@@ -338,7 +338,7 @@ public class PlayerController : MonoBehaviour {
 		if (Iri) 
 		{
 			//Telefeedback
-			if (Input.GetKeyDown (KeyCode.X) ) 
+			if (Input.GetKeyDown (KeyCode.F) ) 
 			{
 				if (PounceCD >= PounceCoolDown) 
 				{
@@ -352,7 +352,7 @@ public class PlayerController : MonoBehaviour {
 				}
 			}
 
-			if(Input.GetKeyUp(KeyCode.X))
+			if(Input.GetKeyUp(KeyCode.F))
 			{
 				if (PounceCD >= TeleCost) {
 					Teleport ();
@@ -363,7 +363,7 @@ public class PlayerController : MonoBehaviour {
 
 
 
-			if (Input.GetKeyDown (KeyCode.Z)) 
+			if (Input.GetKeyDown (KeyCode.D)) 
 			{
 				Dodge ();
 				particles.Play ();
