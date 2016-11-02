@@ -81,6 +81,7 @@ public class PlayerController : MonoBehaviour {
 		source = gameObject.GetComponent<AudioSource>();
 		particles = gameObject.GetComponent<ParticleSystem> ();
 		cFull = wolfSprite.color;
+		UI = GameObject.Find ("Main Text").GetComponent<Text> ();
 
 		storyDialogue = FindObjectOfType<StoryDialogue> ();
 
