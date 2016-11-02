@@ -521,7 +521,7 @@ public class PlayerController : MonoBehaviour {
 
 			}
 		} else gameObject.transform.position = temp;
-		PounceCD = 0;
+		PounceCD -= 2;
 
 
 		makeFaded ();
