@@ -176,6 +176,14 @@ public class PlayerController : MonoBehaviour {
 			recharging = false;
 			UI.text = "";
 		}
+
+
+		if (PounceCD < TeleCost) 
+		{
+			if (UI.text == "Spirit Leap Recharging") {
+				UI.text = "Pounce Recharging";
+			}
+		}
 	}
 
 	void OnCollisionEnter2D (Collision2D other)
@@ -538,14 +546,20 @@ public class PlayerController : MonoBehaviour {
 
 	void Dodge()
 	{
-		if (PounceCD >= 2) {
+		if (PounceCD >= 3) {
 			CancelInvoke ("makeVulnerable");
 			makeFaded ();
 			Invulnerability ();
-			PounceCD -= 2;
+			PounceCD -= 3;
 			Physics2D.IgnoreLayerCollision (10, 11, true);
 			Invoke ("makeVulnerable", 3);
 			source.PlayOneShot (PhaseShift);
+		}
+
+		if (PounceCD < 3) 
+		{
+			UI.text = "Phase Shift Recharging";
+			recharging = true;
 		}
 	}
 
