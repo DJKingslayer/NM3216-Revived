@@ -84,6 +84,7 @@ public class DialogueSelector : MonoBehaviour {
 
 				theTextbox.ReloadScript (theText,isEnd);
 				theTextbox.currentLine = startLine;
+				theTextbox.FixEndLine ();
 
 				if (MultiEnd) 
 				{
