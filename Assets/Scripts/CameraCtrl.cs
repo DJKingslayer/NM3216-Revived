@@ -3,7 +3,8 @@ using System.Collections;
 
 public class CameraCtrl : MonoBehaviour 
 {
-	public Transform player;
+	private Transform player;
+
 	public float MaxY,MinY;
 
 	public bool StaticCam;
@@ -13,6 +14,8 @@ public class CameraCtrl : MonoBehaviour
 
 	void Start()
 	{
+		player = GameObject.Find ("Player").GetComponent<Transform> ();
+
 		offset = transform.position - player.position;	
 //		camY = 1.51f;		
 
@@ -20,6 +23,7 @@ public class CameraCtrl : MonoBehaviour
 		{
 			MaxY = 6;
 		}
+
 	}
 		
 	void LateUpdate () 	

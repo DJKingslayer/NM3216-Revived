@@ -17,4 +17,13 @@ public class JumpCtrl : MonoBehaviour {
 			playerController.ResetJump ();
 		}
 	}
+
+	/*void OnTriggerStay2D(Collider2D other)
+	{
+		if (other.CompareTag ("GROUND") || other.CompareTag ("Enemies") || other.CompareTag ("Platform") || other.CompareTag("Obstacle")) {
+			playerController.ResetJump ();
+			print ("jumpreset");
+		}
+	} */
+
 }

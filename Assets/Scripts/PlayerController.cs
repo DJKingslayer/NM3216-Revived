@@ -17,8 +17,8 @@ public class PlayerController : MonoBehaviour {
 	public bool isAlive;
 	public bool CanMove;
 	public bool IsKiller;
-	public bool SetKiller;
 	public bool AlignTest;
+	public bool Iri, Fenrir;
 
 	//for testing only (makes player invulnerable)
 	public bool isTest;
@@ -38,7 +38,9 @@ public class PlayerController : MonoBehaviour {
 
 	private float speed;
 
+
 	public float CrosshairCounter;
+	public int TeleCost;
 
 	private bool recharging;
 
@@ -79,6 +81,7 @@ public class PlayerController : MonoBehaviour {
 		source = gameObject.GetComponent<AudioSource>();
 		particles = gameObject.GetComponent<ParticleSystem> ();
 		cFull = wolfSprite.color;
+		UI = GameObject.Find ("Main Text").GetComponent<Text> ();
 
 		storyDialogue = FindObjectOfType<StoryDialogue> ();
 
@@ -115,20 +118,17 @@ public class PlayerController : MonoBehaviour {
 		if (PlayerData.AlignSet) 
 		{
 			IsKiller = PlayerData.IsKiller;
-		}
-			
+		}			
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-
-
 		// On Death
-		if (hPCurrent <= 0) {
+		if (hPCurrent <= 0) 
+		{
 			isAlive = false;
 		}
-
 	}
 
 	void FixedUpdate()
@@ -176,6 +176,14 @@ public class PlayerController : MonoBehaviour {
 			recharging = false;
 			UI.text = "";
 		}
+
+
+		if (PounceCD < TeleCost) 
+		{
+			if (UI.text == "Spirit Leap Recharging") {
+				UI.text = "Pounce Recharging";
+			}
+		}
 	}
 
 	void OnCollisionEnter2D (Collision2D other)
@@ -198,6 +206,11 @@ public class PlayerController : MonoBehaviour {
 
 		}
 
+		if(other.gameObject.CompareTag("Obstacle"))
+			{
+				takeDamage (1);
+			}
+
 	}
 
 	void OnTriggerEnter2D (Collider2D other)
@@ -218,7 +231,7 @@ public class PlayerController : MonoBehaviour {
 			if (CrosshairCounter <= 2) {
 
 				Invulnerable = false;
-				takeDamage (2);
+				takeDamage (1);
 				Destroy (other.gameObject);
 				Invoke ("spawnCrosshair", 3);
 			}
@@ -300,19 +313,18 @@ public class PlayerController : MonoBehaviour {
 			rb.AddForce (new Vector2 (0, jumpspeedY * -.6f));
 		}
 
-		if (IsKiller && PlayerData.AlignSet || !PlayerData.AlignSet ) 
+		if (Fenrir) 
 		{
-
 			//pounce
 			if (Input.GetKeyDown (KeyCode.V) && !isPouncing && !jumping) {
 				Pounce ();
 			}
-
+			
 			//Attack
 			if (Input.GetKeyDown (KeyCode.C) && !isPouncing && !Attacking) {
 				Attack ();
 			}
-
+			
 		}
 
 		if (Input.GetKeyDown (KeyCode.Q)) 
@@ -320,14 +332,10 @@ public class PlayerController : MonoBehaviour {
 			Lives += 10;
 		}
 
-		if (SetKiller) 
-		{
-			return;
-		}
 
-		if (!IsKiller && PlayerData.AlignSet || !PlayerData.AlignSet) 
+		if (Iri) 
 		{
-			
+			//Telefeedback
 			if (Input.GetKeyDown (KeyCode.X) ) 
 			{
 				if (PounceCD >= PounceCoolDown) 
@@ -344,12 +352,14 @@ public class PlayerController : MonoBehaviour {
 
 			if(Input.GetKeyUp(KeyCode.X))
 			{
-				if (PounceCD >= PounceCoolDown) {
+				if (PounceCD >= TeleCost) {
 					Teleport ();
 				}
 
 				TeleIcon.SetActive (false);
 			}
+
+
 
 			if (Input.GetKeyDown (KeyCode.Z)) 
 			{
@@ -375,7 +385,7 @@ public class PlayerController : MonoBehaviour {
 			isPouncing = true;
 			jumping = true;
 			anim.SetInteger ("State", 2);
-			PounceCD = 0;
+			PounceCD -= PounceCoolDown;
 			source.PlayOneShot (Pounce1);
 
 
@@ -513,7 +523,7 @@ public class PlayerController : MonoBehaviour {
 
 			if (temp.x < RightBarrier.transform.position.x && temp.x > LeftBarrier.transform.position.y) {
 				gameObject.transform.position = temp;
-				PounceCD = 0;
+				PounceCD -= TeleCost;
 
 
 				makeFaded ();
@@ -522,8 +532,12 @@ public class PlayerController : MonoBehaviour {
 
 			}
 		} else gameObject.transform.position = temp;
-		PounceCD = 0;
+		PounceCD -= 2;
 
+		if (UI.text == "Spirit Leap Recharging") 
+		{
+			UI.text = "Pounce Recharging";
+		}
 
 		makeFaded ();
 		Invulnerability ();
@@ -532,14 +546,20 @@ public class PlayerController : MonoBehaviour {
 
 	void Dodge()
 	{
-		if (PounceCD >= 2) {
+		if (PounceCD >= 3) {
 			CancelInvoke ("makeVulnerable");
 			makeFaded ();
 			Invulnerability ();
-			PounceCD -= 2;
+			PounceCD -= 3;
 			Physics2D.IgnoreLayerCollision (10, 11, true);
 			Invoke ("makeVulnerable", 3);
 			source.PlayOneShot (PhaseShift);
+		}
+
+		if (PounceCD < 3) 
+		{
+			UI.text = "Phase Shift Recharging";
+			recharging = true;
 		}
 	}
 

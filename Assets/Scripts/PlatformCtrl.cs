@@ -39,7 +39,6 @@ public class PlatformCtrl : MonoBehaviour {
 		if (playerController.jumping || abovePlayer )
 		{
 			Physics2D.IgnoreCollision (playerCollider, platformCollider, true);
-
 		}
 
 		if (!playerController.jumping && !abovePlayer || !playerController.isPouncing && !abovePlayer
