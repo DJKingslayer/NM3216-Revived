@@ -34,7 +34,8 @@ public class DestroyOther : MonoBehaviour {
 		}
 
 		// Please Add playerdata.iskiller
-		if (PlayerData.IsKiller) {
+		if (playerController.Fenrir) 
+		{
 			if (other.gameObject.CompareTag ("Marker")) 
 			{
 				float chance = .5f;
