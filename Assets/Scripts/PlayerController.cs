@@ -526,6 +526,10 @@ public class PlayerController : MonoBehaviour {
 		} else gameObject.transform.position = temp;
 		PounceCD -= 2;
 
+		if (UI.text == "Spirit Leap Recharging") 
+		{
+			UI.text = "Pounce Recharging";
+		}
 
 		makeFaded ();
 		Invulnerability ();
