@@ -90,7 +90,7 @@ public class EndlessSceneFader : MonoBehaviour {
 		if (!endlessPlayer.isAlive) 
 		{
 			IsFaded = false;
-			fadeScreenText.text = "You Lose press R to respawn from Checkpoint. \n Continues left: " 
+			fadeScreenText.text = "You Lose press Space to continue! \n Continues left: " 
 				+ endlessPlayer.Lives.ToString() ;
 
 			if (endlessPlayer.Lives <= 0) 

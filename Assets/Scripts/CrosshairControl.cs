@@ -60,7 +60,7 @@ public class CrosshairControl : MonoBehaviour {
 
 		isStarted = false;
 
-		source.pitch = 1.2f;
+		source.pitch = 1;
 	}
 	
 	// Update is called once per frame
@@ -149,21 +149,21 @@ public class CrosshairControl : MonoBehaviour {
 		if (Counter >= 5) {
 			lagTime = 4;
 			smultiplier = speed;
-			source.pitch = 1.2f;
+			source.pitch = 1;
 		}
 
 		if (Counter <= 3 && Counter > 1) {
 			lagTime = 2;
 			float tempspeed = speed * 2;
 			smultiplier = tempspeed;
-			source.pitch = 1.5f;
+			source.pitch = 1.2f;
 		}
 
 		if (Counter <= 1 && Counter >=0) {
 			lagTime = 0;	
 			float tempspeed = speed * 3;
 			smultiplier = tempspeed;
-			source.pitch = 2;				
+			source.pitch = 1.5f;				
 		}
 	}
 
