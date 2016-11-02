@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿
+
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -546,17 +548,17 @@ public class PlayerController : MonoBehaviour {
 
 	void Dodge()
 	{
-		if (PounceCD >= 3) {
+		if (PounceCD >= PounceCoolDown) {
 			CancelInvoke ("makeVulnerable");
 			makeFaded ();
 			Invulnerability ();
-			PounceCD -= 3;
+			PounceCD -= PounceCoolDown;
 			Physics2D.IgnoreLayerCollision (10, 11, true);
 			Invoke ("makeVulnerable", 3);
 			source.PlayOneShot (PhaseShift);
 		}
 
-		if (PounceCD < 3) 
+		if (PounceCD < PounceCoolDown) 
 		{
 			UI.text = "Phase Shift Recharging";
 			recharging = true;
