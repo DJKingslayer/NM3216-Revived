@@ -38,7 +38,9 @@ public class PlayerController : MonoBehaviour {
 
 	private float speed;
 
+
 	public float CrosshairCounter;
+	public int TeleCost;
 
 	private bool recharging;
 
@@ -341,7 +343,7 @@ public class PlayerController : MonoBehaviour {
 
 			if(Input.GetKeyUp(KeyCode.X))
 			{
-				if (PounceCD >= PounceCoolDown) {
+				if (PounceCD >= TeleCost) {
 					Teleport ();
 				}
 
@@ -512,7 +514,7 @@ public class PlayerController : MonoBehaviour {
 
 			if (temp.x < RightBarrier.transform.position.x && temp.x > LeftBarrier.transform.position.y) {
 				gameObject.transform.position = temp;
-				PounceCD -= 1;
+				PounceCD -= TeleCost;
 
 
 				makeFaded ();
