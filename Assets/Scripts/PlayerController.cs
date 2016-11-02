@@ -512,7 +512,7 @@ public class PlayerController : MonoBehaviour {
 
 			if (temp.x < RightBarrier.transform.position.x && temp.x > LeftBarrier.transform.position.y) {
 				gameObject.transform.position = temp;
-				PounceCD -= 2;
+				PounceCD -= 1;
 
 
 				makeFaded ();
