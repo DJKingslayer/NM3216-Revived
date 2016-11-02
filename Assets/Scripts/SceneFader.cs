@@ -98,7 +98,7 @@ public class SceneFader : MonoBehaviour {
 			}
 		}
 
-		if (textBoxManager.endOfStage && textBoxManager.currentLine == textBoxManager.endAtLine) 
+		if (textBoxManager.endOfStage && textBoxManager.currentLine > textBoxManager.endAtLine) 
 		{						
 			sceneSelect ();
 			SceneManager.LoadScene (NextScene);
