@@ -7,4 +7,6 @@
 	static public int KillCount;
 
 	static public int Scene = 1;
+
+	static public int Lives = 10;
 }

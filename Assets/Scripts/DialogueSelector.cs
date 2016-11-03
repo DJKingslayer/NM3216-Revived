@@ -121,6 +121,11 @@ public class DialogueSelector : MonoBehaviour {
 				playerController.MovementFreeze ();
 				playerController.CanMove = false;
 			}
+
+			if (Monster != null) 
+			{
+				Monster.SetActive (true);
+			}
 		}
 	}
 }

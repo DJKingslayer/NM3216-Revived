@@ -44,7 +44,7 @@ public class BirdCtrl : MonoBehaviour {
 
 		if (DeathTimer == 0) 
 		{
-			DeathTimer = 60;
+			DeathTimer = 10;
 		}
 
 		if (Respawns) 
