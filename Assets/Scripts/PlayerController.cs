@@ -528,21 +528,6 @@ public class PlayerController : MonoBehaviour {
 			temp.x -= TeleportDistance;
 		}
 
-//		if (RightBarrier != null && LeftBarrier != null) 
-//		{
-//
-//			if (temp.x < RightBarrier.transform.position.x && temp.x > LeftBarrier.transform.position.y) {
-//				gameObject.transform.position = temp;
-//				PounceCD -= TeleCost;
-//
-//
-//				makeFaded ();
-//				Invulnerability ();
-//
-//
-//			}
-//		} 
-
 		gameObject.transform.position = temp;
 		PounceCD -= 2;
 
@@ -551,11 +536,10 @@ public class PlayerController : MonoBehaviour {
 			UI.text = "Pounce Recharging";
 		}
 
-		makeFaded ();
 		Invulnerability ();
-
-		print ("Teleported");
-
+		isTeleporting = true;
+		anim.SetBool ("Teleporting", true);
+		Invoke ("makeVulnerable", 3);
 	}
 
 	void Dodge()
@@ -623,6 +607,7 @@ public class PlayerController : MonoBehaviour {
 		Invulnerable = false;
 		Physics2D.IgnoreLayerCollision (10, 11	, false);
 		wolfSprite.color = cFull;
+		anim.SetBool ("Teleporting", false);
 	}
 
 	void spawnCrosshair()
