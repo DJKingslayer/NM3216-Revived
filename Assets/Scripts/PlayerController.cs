@@ -112,6 +112,8 @@ public class PlayerController : MonoBehaviour {
 
 		TeleIcon.SetActive (false);
 
+		Lives = PlayerData.Lives;
+
 		if (transform.localScale.x > 0) 
 		{
 			facingRight = true;
@@ -131,10 +133,7 @@ public class PlayerController : MonoBehaviour {
 		{
 			isAlive = false;
 		}
-	}
 
-	void FixedUpdate()
-	{
 		if (!CanMove) 
 		{
 			return;
@@ -147,6 +146,14 @@ public class PlayerController : MonoBehaviour {
 			MovePlayer (speed);
 			flip ();
 			TeleportAnim ();
+		}
+	}
+
+	void FixedUpdate()
+	{
+		if (!CanMove) 
+		{
+			return;
 		}
 
 		if (!isAlive && Lives > 0)
@@ -354,7 +361,8 @@ public class PlayerController : MonoBehaviour {
 
 			if(Input.GetKeyUp(KeyCode.F))
 			{
-				if (PounceCD >= TeleCost) {
+				if (PounceCD >= TeleCost) 
+				{
 					Teleport ();
 				}
 
@@ -520,20 +528,22 @@ public class PlayerController : MonoBehaviour {
 			temp.x -= TeleportDistance;
 		}
 
-		if (RightBarrier != null && LeftBarrier != null) 
-		{
+//		if (RightBarrier != null && LeftBarrier != null) 
+//		{
+//
+//			if (temp.x < RightBarrier.transform.position.x && temp.x > LeftBarrier.transform.position.y) {
+//				gameObject.transform.position = temp;
+//				PounceCD -= TeleCost;
+//
+//
+//				makeFaded ();
+//				Invulnerability ();
+//
+//
+//			}
+//		} 
 
-			if (temp.x < RightBarrier.transform.position.x && temp.x > LeftBarrier.transform.position.y) {
-				gameObject.transform.position = temp;
-				PounceCD -= TeleCost;
-
-
-				makeFaded ();
-				Invulnerability ();
-
-
-			}
-		} else gameObject.transform.position = temp;
+		gameObject.transform.position = temp;
 		PounceCD -= 2;
 
 		if (UI.text == "Spirit Leap Recharging") 
@@ -543,6 +553,8 @@ public class PlayerController : MonoBehaviour {
 
 		makeFaded ();
 		Invulnerability ();
+
+		print ("Teleported");
 
 	}
 
@@ -597,6 +609,7 @@ public class PlayerController : MonoBehaviour {
 		isAlive = true;
 		sceneFader.IsFaded = true;
 		Lives -= 1;
+		PlayerData.Lives = Lives;
 	}
 
 
