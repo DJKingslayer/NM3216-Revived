@@ -76,7 +76,7 @@ public class DialogueSelector : MonoBehaviour {
 			if (isEnd) 
 			{
 				Scene CheckScene = SceneManager.GetActiveScene ();
-				if (CheckScene.name == "Tutorial_Learning_Portion") 
+				if (CheckScene.name == "Tutorial_Calculation_Portion") 
 				{
 					align.SetAlign ();
 					print ("AlignmentSet");
