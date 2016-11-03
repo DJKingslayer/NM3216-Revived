@@ -380,7 +380,6 @@ public class PlayerController : MonoBehaviour {
 			if (Input.GetKeyDown (KeyCode.D)) 
 			{
 				Dodge ();
-				particles.Play ();
 			}
 		}
 
@@ -558,7 +557,7 @@ public class PlayerController : MonoBehaviour {
 
 	void Dodge()
 	{
-		if (PounceCD >= PounceCoolDown) {
+		if (PounceCD >= 4) {
 			CancelInvoke ("makeVulnerable");
 			makeFaded ();
 			Invulnerability ();
@@ -566,6 +565,7 @@ public class PlayerController : MonoBehaviour {
 			Physics2D.IgnoreLayerCollision (10, 11, true);
 			Invoke ("makeVulnerable", 3);
 			source.PlayOneShot (PhaseShift);
+			particles.Play ();
 		}
 
 		if (PounceCD < PounceCoolDown) 
