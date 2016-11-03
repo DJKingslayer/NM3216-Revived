@@ -54,11 +54,9 @@ public class HPController : MonoBehaviour {
 
 	private void handlePBar()
 	{
-		if (PounceBar.fillAmount != pounceFA) {
-			
-			PounceBar.fillAmount = Mathf.Lerp (PounceBar.fillAmount, pounceFA, Time.deltaTime * .5f);
-
-//			int CoolDown = playerController.PounceCoolDown - playerController.PounceCD;
+		if (PounceBar.fillAmount != pounceFA) 
+		{			
+			PounceBar.fillAmount = Mathf.Lerp (0f,1f, pounceFA);
 
 		}
 	}
