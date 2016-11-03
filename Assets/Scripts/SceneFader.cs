@@ -10,8 +10,6 @@ public class SceneFader : MonoBehaviour {
 
 	public bool IsFaded;
 
-//	private bool crossHairSpawned;
-
 	private SpriteRenderer cover;
 
 	[SerializeField]
@@ -24,11 +22,10 @@ public class SceneFader : MonoBehaviour {
 
 	private GameObject crosshair;
 
+	[SerializeField]
 	private PlayerController playerController;
 
 	private TextBoxManager textBoxManager;
-
-//	private Transform crosshairSpawnLoc;
 
 	[SerializeField]
 	private bool isTest;
@@ -39,16 +36,13 @@ public class SceneFader : MonoBehaviour {
 	void Start () 
 	{		
 		cover = GameObject.Find ("Cover").GetComponent<SpriteRenderer>();
-		playerController = GameObject.Find ("Player").GetComponent<PlayerController> ();
-
+		playerController = FindObjectOfType<PlayerController> ();
 		textBoxManager = FindObjectOfType<TextBoxManager> ();
 
 		cover.color = Color.black;
 
 		offBlack = Color.black;
 		offBlack.a = .8f;
-
-//		crossHairSpawned = false;
 
 		if (NextKey == null) 
 		{
@@ -59,25 +53,14 @@ public class SceneFader : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		if (IsFaded) {
+		if (IsFaded) 
+		{
 			FadeToWhite ();
-
-//			if (GameObject.Find ("Crosshair") != null) 
-//			{
-//				crosshair.SetActive (true);
-//			}
-//
-
 		}
 
-		if (!IsFaded) {
+		if (!IsFaded) 
+		{
 			FadeToBlack ();
-
-//			if (GameObject.Find ("Crosshair") != null) 
-//			{
-//				crosshair.SetActive (false);
-//			}
-//
 		}
 
 
@@ -102,8 +85,6 @@ public class SceneFader : MonoBehaviour {
 		{						
 			sceneSelect ();
 			SceneManager.LoadScene (NextScene);
-			PlayerData.Scene += 1;			
-
 		}
 
 		if (!playerController.isAlive) 
@@ -155,15 +136,16 @@ public class SceneFader : MonoBehaviour {
 
 		if (CurrentScene.name == "Tutorial_Calculation_Portion") 
 		{
-			if (PlayerData.IsKiller) 
+			if (PlayerData.KillCount >= 7) 
 			{
-				NextScene = "FenrirMain";
+				NextScene =("FenrirMain");
 			}
 
-			if (!PlayerData.IsKiller) 
+			if (PlayerData.KillCount < 7) 
 			{
-				NextScene = "IriMain";
+				NextScene = ("IriMain");
 			}
+			print (PlayerData.KillCount);
 		}				
 	}
 }

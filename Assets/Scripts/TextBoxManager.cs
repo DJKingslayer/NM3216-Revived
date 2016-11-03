@@ -21,6 +21,7 @@ public class TextBoxManager : MonoBehaviour
 	public bool endOfStage;
 	public bool useFader;
 
+	[SerializeField]
 	private bool isTalking;
 
 	private PlayerController playerController;
@@ -71,7 +72,7 @@ public class TextBoxManager : MonoBehaviour
 			currentLine += 1;	
 		}
 
-		if (currentLine > endAtLine && isTalking && !endOfStage || PlayerData.AlignSet && currentLine > endAtLine) 
+		if (currentLine > endAtLine && isTalking && !endOfStage) 
 		{
 			fader.IsFaded = true;
 			isTalking = false;

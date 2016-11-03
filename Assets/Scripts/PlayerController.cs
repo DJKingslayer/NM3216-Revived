@@ -112,6 +112,8 @@ public class PlayerController : MonoBehaviour {
 
 		TeleIcon.SetActive (false);
 
+		Lives = PlayerData.Lives;
+
 		if (transform.localScale.x > 0) 
 		{
 			facingRight = true;
@@ -131,10 +133,7 @@ public class PlayerController : MonoBehaviour {
 		{
 			isAlive = false;
 		}
-	}
 
-	void FixedUpdate()
-	{
 		if (!CanMove) 
 		{
 			return;
@@ -147,6 +146,20 @@ public class PlayerController : MonoBehaviour {
 			MovePlayer (speed);
 			flip ();
 			TeleportAnim ();
+		}
+
+		if (!pTimerActive && PounceCD < PounceCoolDown) 
+		{
+			InvokeRepeating ("PounceTimer", 1, 1);
+			pTimerActive = true;
+		}
+	}
+
+	void FixedUpdate()
+	{
+		if (!CanMove) 
+		{
+			return;
 		}
 
 		if (!isAlive && Lives > 0)
@@ -340,12 +353,12 @@ public class PlayerController : MonoBehaviour {
 			//Telefeedback
 			if (Input.GetKeyDown (KeyCode.F) ) 
 			{
-				if (PounceCD >= PounceCoolDown) 
+				if (PounceCD >= 2) 
 				{
 					TeleIcon.SetActive (true);
 				}
 
-				if (PounceCD < PounceCoolDown) 
+				if (PounceCD < 2) 
 				{
 					UI.text = "Spirit Leap Recharging";
 					recharging = true;
@@ -354,7 +367,8 @@ public class PlayerController : MonoBehaviour {
 
 			if(Input.GetKeyUp(KeyCode.F))
 			{
-				if (PounceCD >= TeleCost) {
+				if (PounceCD >= TeleCost) 
+				{
 					Teleport ();
 				}
 
@@ -366,7 +380,6 @@ public class PlayerController : MonoBehaviour {
 			if (Input.GetKeyDown (KeyCode.D)) 
 			{
 				Dodge ();
-				particles.Play ();
 			}
 		}
 
@@ -446,11 +459,19 @@ public class PlayerController : MonoBehaviour {
 		anim.SetInteger ("State", 0);
 	}
 
+	private bool pTimerActive =true;
+
 	void PounceTimer()
 	{
 		if (PounceCD < PounceCoolDown) {
 			PounceCD += 1;
 		}
+
+		if (PounceCD == PounceCoolDown) 
+		{
+			pTimerActive = false;
+			CancelInvoke ("PounceTimer");
+		}			
 	}
 
 	void takeDamage(int Damage)
@@ -520,42 +541,32 @@ public class PlayerController : MonoBehaviour {
 			temp.x -= TeleportDistance;
 		}
 
-		if (RightBarrier != null && LeftBarrier != null) 
-		{
-
-			if (temp.x < RightBarrier.transform.position.x && temp.x > LeftBarrier.transform.position.y) {
-				gameObject.transform.position = temp;
-				PounceCD -= TeleCost;
-
-
-				makeFaded ();
-				Invulnerability ();
-
-
-			}
-		} else gameObject.transform.position = temp;
-		PounceCD -= 2;
 
 		if (UI.text == "Spirit Leap Recharging") 
 		{
 			UI.text = "Pounce Recharging";
 		}
 
-		makeFaded ();
+		CancelInvoke ("makeVulnerable");
 		Invulnerability ();
-
+		gameObject.transform.position = temp;
+		PounceCD -= 2;
+		isTeleporting = true;
+		anim.SetBool ("Teleporting", true);
+		Invoke ("makeVulnerable", 3);
 	}
 
 	void Dodge()
 	{
-		if (PounceCD >= PounceCoolDown) {
+		if (PounceCD >= 4) {
 			CancelInvoke ("makeVulnerable");
 			makeFaded ();
 			Invulnerability ();
-			PounceCD -= PounceCoolDown;
+			PounceCD -= 4;
 			Physics2D.IgnoreLayerCollision (10, 11, true);
 			Invoke ("makeVulnerable", 3);
 			source.PlayOneShot (PhaseShift);
+			particles.Play ();
 		}
 
 		if (PounceCD < PounceCoolDown) 
@@ -597,6 +608,7 @@ public class PlayerController : MonoBehaviour {
 		isAlive = true;
 		sceneFader.IsFaded = true;
 		Lives -= 1;
+		PlayerData.Lives = Lives;
 	}
 
 
@@ -610,6 +622,7 @@ public class PlayerController : MonoBehaviour {
 		Invulnerable = false;
 		Physics2D.IgnoreLayerCollision (10, 11	, false);
 		wolfSprite.color = cFull;
+		anim.SetBool ("Teleporting", false);
 	}
 
 	void spawnCrosshair()
@@ -625,7 +638,9 @@ public class PlayerController : MonoBehaviour {
 
 	public void CountDeath ()
 	{
-		if (AlignTest) {
+		Scene CurrentScene = SceneManager.GetActiveScene ();
+		if (CurrentScene.name == ("Tutorial_Calculation_Portion")) 
+		{
 			PlayerData.KillCount += 1;
 		}
 	}

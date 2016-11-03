@@ -21,7 +21,6 @@ public class DialogueSelector : MonoBehaviour {
 	public bool isEnd, hasActivated;
 	public bool UseFader;
 	public bool FreezePlayer;
-	public bool MultiEnd;
 
 	private SceneFader fader;
 
@@ -76,7 +75,7 @@ public class DialogueSelector : MonoBehaviour {
 			if (isEnd) 
 			{
 				Scene CheckScene = SceneManager.GetActiveScene ();
-				if (CheckScene.name == "Tutorial_Learning_Portion") 
+				if (CheckScene.name == "Tutorial_Calculation_Portion") 
 				{
 					align.SetAlign ();
 					print ("AlignmentSet");
@@ -85,20 +84,6 @@ public class DialogueSelector : MonoBehaviour {
 				theTextbox.ReloadScript (theText,isEnd);
 				theTextbox.currentLine = startLine;
 				theTextbox.FixEndLine ();
-
-				if (MultiEnd) 
-				{
-					if (!PlayerData.IsKiller) {
-						theTextbox.currentLine = GoodStart;
-						theTextbox.endAtLine = GoodEnd;
-					}
-					
-					if (PlayerData.IsKiller) 
-					{
-						theTextbox.currentLine = BadStart;
-						theTextbox.endAtLine = BadEnd;
-					}
-				}
 
 			}
 
@@ -120,6 +105,11 @@ public class DialogueSelector : MonoBehaviour {
 			{
 				playerController.MovementFreeze ();
 				playerController.CanMove = false;
+			}
+
+			if (Monster != null) 
+			{
+				Monster.SetActive (true);
 			}
 		}
 	}
