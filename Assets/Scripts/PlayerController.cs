@@ -147,6 +147,12 @@ public class PlayerController : MonoBehaviour {
 			flip ();
 			TeleportAnim ();
 		}
+
+		if (!pTimerActive && PounceCD < PounceCoolDown) 
+		{
+			InvokeRepeating ("PounceTimer", 1, 1);
+			pTimerActive = true;
+		}
 	}
 
 	void FixedUpdate()
@@ -454,11 +460,19 @@ public class PlayerController : MonoBehaviour {
 		anim.SetInteger ("State", 0);
 	}
 
+	private bool pTimerActive =true;
+
 	void PounceTimer()
 	{
 		if (PounceCD < PounceCoolDown) {
 			PounceCD += 1;
 		}
+
+		if (PounceCD == PounceCoolDown) 
+		{
+			pTimerActive = false;
+			CancelInvoke ("PounceTimer");
+		}			
 	}
 
 	void takeDamage(int Damage)
@@ -548,7 +562,7 @@ public class PlayerController : MonoBehaviour {
 			CancelInvoke ("makeVulnerable");
 			makeFaded ();
 			Invulnerability ();
-			PounceCD -= PounceCoolDown;
+			PounceCD -= 4;
 			Physics2D.IgnoreLayerCollision (10, 11, true);
 			Invoke ("makeVulnerable", 3);
 			source.PlayOneShot (PhaseShift);
