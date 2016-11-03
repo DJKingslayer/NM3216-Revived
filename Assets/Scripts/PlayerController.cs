@@ -353,12 +353,12 @@ public class PlayerController : MonoBehaviour {
 			//Telefeedback
 			if (Input.GetKeyDown (KeyCode.F) ) 
 			{
-				if (PounceCD >= PounceCoolDown) 
+				if (PounceCD >= 2) 
 				{
 					TeleIcon.SetActive (true);
 				}
 
-				if (PounceCD < PounceCoolDown) 
+				if (PounceCD < 2) 
 				{
 					UI.text = "Spirit Leap Recharging";
 					recharging = true;
@@ -541,15 +541,16 @@ public class PlayerController : MonoBehaviour {
 			temp.x -= TeleportDistance;
 		}
 
-		gameObject.transform.position = temp;
-		PounceCD -= 2;
 
 		if (UI.text == "Spirit Leap Recharging") 
 		{
 			UI.text = "Pounce Recharging";
 		}
 
+		CancelInvoke ("makeVulnerable");
 		Invulnerability ();
+		gameObject.transform.position = temp;
+		PounceCD -= 2;
 		isTeleporting = true;
 		anim.SetBool ("Teleporting", true);
 		Invoke ("makeVulnerable", 3);
@@ -637,7 +638,9 @@ public class PlayerController : MonoBehaviour {
 
 	public void CountDeath ()
 	{
-		if (AlignTest) {
+		Scene CurrentScene = SceneManager.GetActiveScene ();
+		if (CurrentScene.name == ("Tutorial_Calculation_Portion")) 
+		{
 			PlayerData.KillCount += 1;
 		}
 	}

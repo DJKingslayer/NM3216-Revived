@@ -21,7 +21,6 @@ public class DialogueSelector : MonoBehaviour {
 	public bool isEnd, hasActivated;
 	public bool UseFader;
 	public bool FreezePlayer;
-	public bool MultiEnd;
 
 	private SceneFader fader;
 
@@ -85,20 +84,6 @@ public class DialogueSelector : MonoBehaviour {
 				theTextbox.ReloadScript (theText,isEnd);
 				theTextbox.currentLine = startLine;
 				theTextbox.FixEndLine ();
-
-				if (MultiEnd) 
-				{
-					if (!PlayerData.IsKiller) {
-						theTextbox.currentLine = GoodStart;
-						theTextbox.endAtLine = GoodEnd;
-					}
-					
-					if (PlayerData.IsKiller) 
-					{
-						theTextbox.currentLine = BadStart;
-						theTextbox.endAtLine = BadEnd;
-					}
-				}
 
 			}
 
