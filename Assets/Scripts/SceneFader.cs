@@ -85,8 +85,6 @@ public class SceneFader : MonoBehaviour {
 		{						
 			sceneSelect ();
 			SceneManager.LoadScene (NextScene);
-			PlayerData.Scene += 1;			
-
 		}
 
 		if (!playerController.isAlive) 
@@ -138,15 +136,16 @@ public class SceneFader : MonoBehaviour {
 
 		if (CurrentScene.name == "Tutorial_Calculation_Portion") 
 		{
-			if (PlayerData.IsKiller) 
+			if (PlayerData.KillCount >= 7) 
 			{
-				NextScene = "FenrirMain";
+				NextScene =("FenrirMain");
 			}
 
-			if (!PlayerData.IsKiller) 
+			if (PlayerData.KillCount < 7) 
 			{
-				NextScene = "IriMain";
+				NextScene = ("IriMain");
 			}
+			print (PlayerData.KillCount);
 		}				
 	}
 }
