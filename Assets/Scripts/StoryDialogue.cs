@@ -55,7 +55,7 @@ public class StoryDialogue : MonoBehaviour {
 			textBoxManager.ReloadScript (FenrirText, false);
 
 			textBoxManager.currentLine = counterB - 1;
-			textBoxManager.endAtLine = counterB;
+			textBoxManager.endAtLine = counterB - 1;
 
 			textBoxManager.useFader = false;
 
