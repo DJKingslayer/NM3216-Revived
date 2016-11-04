@@ -10,8 +10,6 @@ public class DialogueSelector : MonoBehaviour {
 
 	public int startLine;
 	public int endLine;
-	public int GoodStart, GoodEnd;
-	public int BadStart, BadEnd;
 
 	public AudioClip Ding;
 
