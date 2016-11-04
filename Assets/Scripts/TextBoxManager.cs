@@ -30,7 +30,8 @@ public class TextBoxManager : MonoBehaviour
 
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 
 		playerController = GameObject.Find ("Player").GetComponent<PlayerController> ();
 		fader = GameObject.Find ("Cover").GetComponent<SceneFader> ();
