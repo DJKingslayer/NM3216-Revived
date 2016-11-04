@@ -617,7 +617,11 @@ public class PlayerController : MonoBehaviour {
 		Invulnerable = false;
 		Physics2D.IgnoreLayerCollision (10, 11	, false);
 		wolfSprite.color = cFull;
-		anim.SetBool ("Teleporting", false);
+
+		if (Iri) 
+		{
+			anim.SetBool ("Teleporting", false);
+		}
 	}
 
 	void spawnCrosshair()
