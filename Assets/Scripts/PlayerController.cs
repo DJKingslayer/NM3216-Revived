@@ -438,12 +438,12 @@ public class PlayerController : MonoBehaviour {
 
 	void Attack()
 	{
-		if (PounceCD > 1) {
+		if (PounceCD >= 1) {
 			
 			Instantiate (Slash, PouncePos.position, Quaternion.identity);
 			Attacking = true;
 
-			PounceCD -= 2;
+			PounceCD -= 1;
 
 			Invoke ("AttackReset", .5f);
 //			anim.SetInteger ("State", 1);
