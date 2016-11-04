@@ -321,6 +321,7 @@ public class PlayerController : MonoBehaviour {
 		{
 			Jump ();
 			jumping = true;
+			anim.SetInteger ("State", 4);
 		}
 
 		//fall faster
