@@ -1,17 +1,22 @@
 fileFormatVersion: 2
-guid: ada7b8068bab04ebbb942c0aa8bf2cec
-timeCreated: 1478073895
+guid: 0e3ddcfa367e14a6b89cf6040c69c36a
+timeCreated: 1478248737
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: White Phase 1
-    21300002: White Phase 4
-    21300004: White Phase 7
-    21300006: White Phase 2
-    21300008: White Phase 5
-    21300010: White Phase 8
-    21300012: White Phase 3
-    21300014: White Phase 6
+    21300000: Dark Bite 1
+    21300002: Dark Bite 4
+    21300004: Dark Bite 7
+    21300006: Dark Bite 10
+    21300008: Dark Bite 13
+    21300010: Dark Bite 2
+    21300012: Dark Bite 5
+    21300014: Dark Bite 8
+    21300016: Dark Bite 11
+    21300018: Dark Bite 3
+    21300020: Dark Bite 6
+    21300022: Dark Bite 9
+    21300024: Dark Bite 12
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -61,111 +66,176 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: White Phase 1
+      name: Dark Bite 1
       rect:
         serializedVersion: 2
         x: 0
-        y: 2000
-        width: 2000
-        height: 1000
+        y: 2850
+        width: 1200
+        height: 900
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: White Phase 4
+      name: Dark Bite 4
       rect:
         serializedVersion: 2
-        x: 2000
-        y: 2000
-        width: 2000
-        height: 1000
+        x: 1200
+        y: 2850
+        width: 1200
+        height: 900
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: White Phase 7
+      name: Dark Bite 7
       rect:
         serializedVersion: 2
-        x: 4000
-        y: 2000
-        width: 2000
-        height: 1000
+        x: 2400
+        y: 2850
+        width: 1200
+        height: 900
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: White Phase 2
+      name: Dark Bite 10
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1000
-        width: 2000
-        height: 1000
+        x: 3600
+        y: 2850
+        width: 1200
+        height: 900
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: White Phase 5
+      name: Dark Bite 13
       rect:
         serializedVersion: 2
-        x: 2000
-        y: 1000
-        width: 2000
-        height: 1000
+        x: 4800
+        y: 2850
+        width: 1200
+        height: 900
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: White Phase 8
-      rect:
-        serializedVersion: 2
-        x: 4000
-        y: 1000
-        width: 2000
-        height: 1000
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: White Phase 3
+      name: Dark Bite 2
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 2000
-        height: 1000
+        y: 1699
+        width: 1200
+        height: 900
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: White Phase 6
+      name: Dark Bite 5
       rect:
         serializedVersion: 2
-        x: 2000
-        y: 0
-        width: 2000
-        height: 1000
+        x: 1200
+        y: 1706
+        width: 1200
+        height: 900
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Dark Bite 8
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 1714
+        width: 1200
+        height: 900
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Dark Bite 11
+      rect:
+        serializedVersion: 2
+        x: 3600
+        y: 1779
+        width: 1200
+        height: 900
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Dark Bite 3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 1200
+        height: 900
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Dark Bite 6
+      rect:
+        serializedVersion: 2
+        x: 1207
+        y: 482
+        width: 1200
+        height: 900
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Dark Bite 9
+      rect:
+        serializedVersion: 2
+        x: 2407
+        y: 497
+        width: 1200
+        height: 900
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Dark Bite 12
+      rect:
+        serializedVersion: 2
+        x: 3593
+        y: 504
+        width: 1200
+        height: 900
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     outline: []
-  spritePackingTag: White Wolf
+  spritePackingTag: Dark Wolf
   userData: 
   assetBundleName: 
   assetBundleVariant: 

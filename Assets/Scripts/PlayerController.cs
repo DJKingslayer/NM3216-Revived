@@ -199,7 +199,8 @@ public class PlayerController : MonoBehaviour {
 
 	void OnCollisionEnter2D (Collision2D other)
 	{
-		if (other.gameObject.CompareTag ("GROUND")) {
+		if (other.gameObject.CompareTag ("GROUND")) 
+		{
 			isHurt = false;
 			anim.SetInteger ("State", 0);
 
@@ -210,7 +211,8 @@ public class PlayerController : MonoBehaviour {
 
 		}
 
-		if (other.gameObject.CompareTag ("Platform")) {
+		if (other.gameObject.CompareTag ("Platform")) 
+		{
 			isHurt = false;
 			anim.SetInteger ("State", 0);
 
@@ -281,13 +283,13 @@ public class PlayerController : MonoBehaviour {
 
 		if(playerSpeed < 0 && ! jumping  || playerSpeed > 0 && !jumping)
 		{
-			if (isHurt == false)
+			if (isHurt == false && !Attacking)
 			{
 				anim.SetInteger("State",1);
 			}
 		}
 
-		if(playerSpeed == 0 && !jumping && !isPouncing)
+		if(playerSpeed == 0 && !jumping && !isPouncing && !Attacking)
 		{
 			if (isHurt == false) 
 			{
@@ -446,7 +448,7 @@ public class PlayerController : MonoBehaviour {
 			PounceCD -= 1;
 
 			Invoke ("AttackReset", .5f);
-//			anim.SetInteger ("State", 1);
+			anim.SetInteger ("State", 3);
 			source.PlayOneShot(BasicAttack);
 		}
 

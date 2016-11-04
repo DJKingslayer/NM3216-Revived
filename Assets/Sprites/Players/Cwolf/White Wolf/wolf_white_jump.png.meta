@@ -1,17 +1,18 @@
 fileFormatVersion: 2
-guid: ada7b8068bab04ebbb942c0aa8bf2cec
-timeCreated: 1478073895
+guid: f40fe0f3809854ab28dbb44f247045d1
+timeCreated: 1478248148
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: White Phase 1
-    21300002: White Phase 4
-    21300004: White Phase 7
-    21300006: White Phase 2
-    21300008: White Phase 5
-    21300010: White Phase 8
-    21300012: White Phase 3
-    21300014: White Phase 6
+    21300000: White Jump 1
+    21300002: White Jump 4
+    21300004: White Jump 7
+    21300006: White Jump 2
+    21300008: White Jump 5
+    21300010: White Jump 8
+    21300012: White Jump 3
+    21300014: White Jump 6
+    21300016: White Jump 9
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -61,104 +62,117 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: White Phase 1
+      name: White Jump 1
       rect:
         serializedVersion: 2
         x: 0
-        y: 2000
-        width: 2000
-        height: 1000
+        y: 2700
+        width: 1200
+        height: 1200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: White Phase 4
+      name: White Jump 4
       rect:
         serializedVersion: 2
-        x: 2000
-        y: 2000
-        width: 2000
-        height: 1000
+        x: 1200
+        y: 2700
+        width: 1200
+        height: 1200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: White Phase 7
+      name: White Jump 7
       rect:
         serializedVersion: 2
-        x: 4000
-        y: 2000
-        width: 2000
-        height: 1000
+        x: 2400
+        y: 2700
+        width: 1200
+        height: 1200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: White Phase 2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 1000
-        width: 2000
-        height: 1000
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: White Phase 5
-      rect:
-        serializedVersion: 2
-        x: 2000
-        y: 1000
-        width: 2000
-        height: 1000
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: White Phase 8
-      rect:
-        serializedVersion: 2
-        x: 4000
-        y: 1000
-        width: 2000
-        height: 1000
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: White Phase 3
+      name: White Jump 2
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 2000
-        height: 1000
+        y: 1500
+        width: 1200
+        height: 1200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: White Phase 6
+      name: White Jump 5
       rect:
         serializedVersion: 2
-        x: 2000
-        y: 0
-        width: 2000
-        height: 1000
+        x: 1200
+        y: 1500
+        width: 1200
+        height: 1200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: White Jump 8
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 1500
+        width: 1200
+        height: 1200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: White Jump 3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 300
+        width: 1200
+        height: 1200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: White Jump 6
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 300
+        width: 1200
+        height: 1200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: White Jump 9
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 300
+        width: 1200
+        height: 1200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
