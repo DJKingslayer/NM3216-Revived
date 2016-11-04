@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneFader : MonoBehaviour {
 
-	public Text fadeScreenText;
+	private Text fadeScreenText;
+
 	public Text NextKey;
 
 	public bool IsFaded;
@@ -38,6 +39,7 @@ public class SceneFader : MonoBehaviour {
 		cover = GameObject.Find ("Cover").GetComponent<SpriteRenderer>();
 		playerController = FindObjectOfType<PlayerController> ();
 		textBoxManager = FindObjectOfType<TextBoxManager> ();
+		fadeScreenText = GameObject.Find ("FadescreenText").GetComponent<Text>() ;
 
 		cover.color = Color.black;
 
