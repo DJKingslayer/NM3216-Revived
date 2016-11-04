@@ -52,7 +52,8 @@ public class TextBoxManager : MonoBehaviour
 
 	void Update()
 	{
-		if (currentLine <= endAtLine) {
+		if (currentLine <= endAtLine) 
+		{
 
 			if (useFader) 
 			{

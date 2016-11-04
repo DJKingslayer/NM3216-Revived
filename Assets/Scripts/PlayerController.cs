@@ -68,8 +68,6 @@ public class PlayerController : MonoBehaviour {
 
 	private Color cFull;
 
-	private StoryDialogue storyDialogue;
-
 	private ParticleSystem particles;
 
 
@@ -84,8 +82,6 @@ public class PlayerController : MonoBehaviour {
 		particles = gameObject.GetComponent<ParticleSystem> ();
 		cFull = wolfSprite.color;
 		UI = GameObject.Find ("Main Text").GetComponent<Text> ();
-
-		storyDialogue = FindObjectOfType<StoryDialogue> ();
 
 		source.pitch = 1;
 
@@ -164,7 +160,7 @@ public class PlayerController : MonoBehaviour {
 
 		if (!isAlive && Lives > 0)
 		{
-			if (Input.GetKeyDown (KeyCode.R)) 
+			if (Input.GetKeyDown (KeyCode.Space)) 
 			{
 				Respawn ();
 			}
@@ -253,11 +249,6 @@ public class PlayerController : MonoBehaviour {
 
 		}
 
-		if (other.gameObject.CompareTag ("Marker")) 
-		{
-			storyDialogue.CountMarker ();
-		}
-
 		if (other.gameObject.CompareTag("Obstacle"))
 		{
 			takeDamage (1);
@@ -273,6 +264,14 @@ public class PlayerController : MonoBehaviour {
 			takeDamage (0);
 		}
 
+	}
+
+	void OnTriggerStay2D(Collider2D other)
+	{
+		if(other.gameObject.CompareTag("Enemies") || other.gameObject.CompareTag("Marker"))
+		{
+			takeDamage (1);
+		}
 	}
 
  
@@ -476,7 +475,8 @@ public class PlayerController : MonoBehaviour {
 
 	void takeDamage(int Damage)
 	{
-		if (isTest) {
+		if (!CanMove) 
+		{
 			return;
 		}
 
@@ -622,7 +622,11 @@ public class PlayerController : MonoBehaviour {
 		Invulnerable = false;
 		Physics2D.IgnoreLayerCollision (10, 11	, false);
 		wolfSprite.color = cFull;
-		anim.SetBool ("Teleporting", false);
+
+		if (Iri) 
+		{
+			anim.SetBool ("Teleporting", false);
+		}
 	}
 
 	void spawnCrosshair()
@@ -657,4 +661,8 @@ public class PlayerController : MonoBehaviour {
 		rb.velocity = new Vector2 (0, 0);
 	}
 
+	public void SavePosition()
+	{
+		respawnPosition = transform.position;
+	}
 }

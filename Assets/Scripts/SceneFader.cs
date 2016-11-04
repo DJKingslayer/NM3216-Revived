@@ -67,7 +67,7 @@ public class SceneFader : MonoBehaviour {
 		if (!playerController.isAlive) 
 		{
 			IsFaded = false;
-			fadeScreenText.text = "You Lose press R to respawn from Checkpoint. \n Continues left: " 
+			fadeScreenText.text = "Press Space to continue. \n Continues left: " 
 				+ playerController.Lives.ToString() ;
 
 			if (playerController.Lives <= 0) 
@@ -146,7 +146,13 @@ public class SceneFader : MonoBehaviour {
 				NextScene = ("IriMain");
 			}
 			print (PlayerData.KillCount);
-		}				
+		}
+
+		if (CurrentScene.name == "IriMain" || CurrentScene.name == "FenrirMain") 
+		{
+			NextScene = ("End");
+		}
+
 	}
 }
 
