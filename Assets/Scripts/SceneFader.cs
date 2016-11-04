@@ -146,7 +146,13 @@ public class SceneFader : MonoBehaviour {
 				NextScene = ("IriMain");
 			}
 			print (PlayerData.KillCount);
-		}				
+		}
+
+		if (CurrentScene.name == "IriMain" || CurrentScene.name == "FenrirMain") 
+		{
+			NextScene = ("End");
+		}
+
 	}
 }
 

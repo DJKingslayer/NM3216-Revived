@@ -253,11 +253,6 @@ public class PlayerController : MonoBehaviour {
 
 		}
 
-		if (other.gameObject.CompareTag ("Marker")) 
-		{
-			storyDialogue.CountMarker ();
-		}
-
 		if (other.gameObject.CompareTag("Obstacle"))
 		{
 			takeDamage (1);
