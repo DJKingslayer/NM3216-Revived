@@ -19,6 +19,7 @@ public class DialogueSelector : MonoBehaviour {
 	public bool isEnd, hasActivated;
 	public bool UseFader;
 	public bool FreezePlayer;
+	public bool IgnoreEndLine;
 
 	private SceneFader fader;
 
@@ -59,12 +60,12 @@ public class DialogueSelector : MonoBehaviour {
 				hasActivated = true;
 				theTextbox.ReloadScript (theText,isEnd);
 								
-				if (endLine != 0) 
+				if (endLine > 0 || IgnoreEndLine) 
 				{
 					theTextbox.endAtLine = endLine;
 				}
 				
-				if (endLine == 0) 
+				if (endLine == 0 && !IgnoreEndLine) 
 				{
 					theTextbox.endAtLine = theTextbox.textLines.Length - 1;
 				}

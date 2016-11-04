@@ -80,6 +80,8 @@ public class TextBoxManager : MonoBehaviour
 			DisableDialogueBox ();
 		}
 
+
+		//Freezes Movement
 		if (fader.IsFaded && DisableMovement || isTalking) 
 		{
 			playerController.CanMove = false;
