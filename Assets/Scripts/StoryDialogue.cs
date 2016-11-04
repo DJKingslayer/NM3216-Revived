@@ -41,7 +41,7 @@ public class StoryDialogue : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (counter == StoryProceed && counterB < 5)
+		if (counter == StoryProceed && counterB > 0)
 		{
 			Invoke ("delayGrowl", 3);				
 			counter -= StoryProceed;
@@ -56,6 +56,8 @@ public class StoryDialogue : MonoBehaviour {
 
 			loadHead ();
 
+			playerController.SavePosition ();
+
 		}
 
 		if (playerController.Fenrir && !playerController.Iri) 
@@ -63,6 +65,7 @@ public class StoryDialogue : MonoBehaviour {
 			if (counterB == 5) 
 			{
 				Invoke ("delayHowl", 3);
+				counterB = -1;
 			}
 		}
 
@@ -70,8 +73,10 @@ public class StoryDialogue : MonoBehaviour {
 		{
 			textBoxManager.ReloadScript (FenrirText, true);
 
-			textBoxManager.currentLine = counterB;
-			textBoxManager.endAtLine = counterB + 1;
+			textBoxManager.currentLine = 5;
+			textBoxManager.endAtLine = 5;
+
+			textBoxManager.useFader = false;
 		}
 
 	}
