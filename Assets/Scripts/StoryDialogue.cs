@@ -26,6 +26,8 @@ public class StoryDialogue : MonoBehaviour {
 
 	private Image dialogueSprite;
 
+	private Text killCounter;
+
 	// Use this for initialization
 	void Start () {
 		counter = 0;
@@ -37,11 +39,14 @@ public class StoryDialogue : MonoBehaviour {
 		playerController = FindObjectOfType<PlayerController> ();
 
 		dialogueSprite = GameObject.Find ("Dialogue Picture").GetComponent<Image> ();
+
+		killCounter = GameObject.Find ("Kill Count").GetComponent<Text>();
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		if (counter == StoryProceed && counterB > 0)
+	void Update () 
+	{
+		if (counter >= StoryProceed && counterB >= 0)
 		{
 			Invoke ("delayGrowl", 3);				
 			counter -= StoryProceed;
@@ -79,6 +84,7 @@ public class StoryDialogue : MonoBehaviour {
 			textBoxManager.useFader = false;
 		}
 
+		killCounter.text = counter.ToString () + "/" + TotalEnemies.ToString ();
 	}
 
 	public void CountMarker()

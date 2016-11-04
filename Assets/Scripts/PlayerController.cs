@@ -160,7 +160,7 @@ public class PlayerController : MonoBehaviour {
 
 		if (!isAlive && Lives > 0)
 		{
-			if (Input.GetKeyDown (KeyCode.R)) 
+			if (Input.GetKeyDown (KeyCode.Space)) 
 			{
 				Respawn ();
 			}
