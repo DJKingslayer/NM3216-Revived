@@ -603,7 +603,11 @@ public class PlayerController : MonoBehaviour {
 
 	void Respawn()
 	{
-		transform.position = respawnPosition;
+		//Prevent Respawning too low
+		Vector3 limit = respawnPosition;
+		limit.y = Mathf.Clamp (limit.y, 0f, 100f);
+		transform.position = limit;
+
 		hPCurrent = HPMax;
 		makeFaded ();
 		Invulnerability ();
