@@ -100,7 +100,7 @@ public class BirdCtrl : MonoBehaviour {
 		transform.localScale = temp;
 
 		Vector2 tempVelocity = rb.velocity;
-		tempVelocity *= -1;
+		tempVelocity.x *= -1;
 		rb.velocity = tempVelocity;
 	}
 
