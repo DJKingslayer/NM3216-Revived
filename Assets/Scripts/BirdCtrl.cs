@@ -24,6 +24,8 @@ public class BirdCtrl : MonoBehaviour {
 
 	private bool facingRight;
 
+	public GameObject Splat;
+
 	void Awake()
 	{
 		originalPos = gameObject.transform.position;
@@ -97,6 +99,7 @@ public class BirdCtrl : MonoBehaviour {
 		
 		if (other.CompareTag ("Destroyer")) {
 			sfx.PlaySfx (sfx.BirdDeath);
+			Instantiate (Splat,transform.position,Quaternion.identity);
 			Destroy (gameObject);	
 		}
 

@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour {
 	public bool isAlive;
 	public bool CanMove;
 	public bool IsKiller;
-	public bool AlignTest;
 	public bool Iri, Fenrir;
 
 	//for testing only (makes player invulnerable)
@@ -481,6 +480,11 @@ public class PlayerController : MonoBehaviour {
 			return;
 		}
 
+		if (PlayerData.godMode) 
+		{
+			return;
+		}	
+
 		if (sceneFader.IsFaded && !Invulnerable) {
 
 			rb.velocity = new Vector2 (0, rb.velocity.y);
@@ -493,7 +497,6 @@ public class PlayerController : MonoBehaviour {
 			Invulnerability ();
 
 			makeFaded ();
-
 		}
 	}
 
@@ -570,7 +573,7 @@ public class PlayerController : MonoBehaviour {
 			source.PlayOneShot (PhaseShift);
 			particles.Play ();
 
-			IncHP (1, 2);
+			IncHP (.75f, 1);
 		}
 
 		if (PounceCD < PounceCoolDown) 
@@ -613,6 +616,11 @@ public class PlayerController : MonoBehaviour {
 
 		isAlive = true;
 		sceneFader.IsFaded = true;
+
+		if (PlayerData.godMode) 
+		{
+			return;
+		}
 		Lives -= 1;
 		PlayerData.Lives = Lives;
 	}
@@ -670,5 +678,10 @@ public class PlayerController : MonoBehaviour {
 	public void SavePosition()
 	{
 		respawnPosition = transform.position;
+	}
+
+	public void HungerPang()
+	{
+		hPCurrent = 0;
 	}
 }
