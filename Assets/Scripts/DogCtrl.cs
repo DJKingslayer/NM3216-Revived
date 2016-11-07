@@ -5,6 +5,7 @@ public class DogCtrl : MonoBehaviour {
 
 	public float speedX, JumpspeedY, JumpDelay, WalkRange;
 	public GameObject Splat;
+	public float TurnCheckTime;
 
 	private Rigidbody2D rb;
 	private bool facingRight;
@@ -18,13 +19,17 @@ public class DogCtrl : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
+		if (TurnCheckTime == 0) 
+		{
+			TurnCheckTime = 2;
+		}	
 
 		rb = gameObject.GetComponent<Rigidbody2D> ();
 		rb.velocity = new Vector2 (speedX, 0);
 		startingX = transform.position.x;
-		InvokeRepeating ("CheckTurn",2,2);
-//		InvokeRepeating ("Turn", 5, Random.Range (1, 5));
+		InvokeRepeating ("CheckTurn",TurnCheckTime,TurnCheckTime);
 		sfx = FindObjectOfType<SfxCtrl>();
 
 		startingPos = gameObject.transform.position;
