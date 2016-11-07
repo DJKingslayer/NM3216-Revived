@@ -28,9 +28,6 @@ public class SceneFader : MonoBehaviour {
 
 	private TextBoxManager textBoxManager;
 
-	[SerializeField]
-	private bool isTest;
-
 	private string NextScene;
 
 	// Use this for initialization
@@ -66,7 +63,7 @@ public class SceneFader : MonoBehaviour {
 		}
 
 
-		if (!playerController.isAlive) 
+		if (!playerController.isAlive && playerController != null) 
 		{
 			IsFaded = false;
 			fadeScreenText.text = "Press Space to continue. \n Continues left: " 
@@ -89,7 +86,7 @@ public class SceneFader : MonoBehaviour {
 			SceneManager.LoadScene (NextScene);
 		}
 
-		if (!playerController.isAlive) 
+		if (!playerController.isAlive && playerController != null) 
 		{
 			if (playerController.Lives > 0) 
 			{
@@ -98,7 +95,7 @@ public class SceneFader : MonoBehaviour {
 
 			if (playerController.Lives == 0) 
 			{
-				NextKey.text = "Press M";
+				NextKey.text = "Press Space";
 			}
 
 		} else
@@ -115,7 +112,8 @@ public class SceneFader : MonoBehaviour {
 
 	void FadeToBlack ()
 	{
-		if (playerController.isAlive) {
+		if (playerController.isAlive && playerController != null) 
+		{
 			cover.color = Color.Lerp (cover.color, Color.black, Time.deltaTime * fadeTime);
 			fadeScreenText.color = Color.Lerp (fadeScreenText.color, Color.white, Time.deltaTime * fadeTime);
 			NextKey.color = Color.Lerp (fadeScreenText.color, Color.white, Time.deltaTime * fadeTime);

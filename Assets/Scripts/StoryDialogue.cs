@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class StoryDialogue : MonoBehaviour {
 
 	[SerializeField]
 	private int counter,counterB;
+
+	[SerializeField]
 	private int PresentedCounter;
 
 	private AudioSource source;
@@ -30,7 +33,8 @@ public class StoryDialogue : MonoBehaviour {
 	private Text killCounter;
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 		counter = 0;
 		counterB = 0;
 		PresentedCounter = 0;
@@ -79,11 +83,16 @@ public class StoryDialogue : MonoBehaviour {
 		if (PresentedCounter == TotalEnemies) 
 		{
 			textBoxManager.ReloadScript (FenrirText, true);
+//			textBoxManager.endOfStage = true;
 
 			textBoxManager.currentLine = 5;
 			textBoxManager.endAtLine = 5;
-
 			textBoxManager.useFader = false;
+
+			if (Input.GetKeyDown (KeyCode.Space))
+			{
+				SceneManager.LoadScene ("End");
+			}
 		}
 
 		killCounter.text = PresentedCounter.ToString () + "/" + TotalEnemies.ToString ();

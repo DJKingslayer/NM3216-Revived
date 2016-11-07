@@ -21,6 +21,8 @@ public class TextBoxManager : MonoBehaviour
 	public bool endOfStage;
 	public bool useFader;
 
+	public bool LastScene;
+
 	[SerializeField]
 	private bool isTalking;
 
@@ -28,13 +30,26 @@ public class TextBoxManager : MonoBehaviour
 
 	private SceneFader fader;
 
+	[SerializeField]
+	private EndFader eFader;
 
 	// Use this for initialization
 	void Start () 
 	{
+		if (GameObject.Find("Player") != null) 
+		{
+			playerController = GameObject.Find ("Player").GetComponent<PlayerController> ();
+		}
 
-		playerController = GameObject.Find ("Player").GetComponent<PlayerController> ();
-		fader = GameObject.Find ("Cover").GetComponent<SceneFader> ();
+		if (!LastScene) 
+		{
+			fader = GameObject.Find ("Cover").GetComponent<SceneFader> ();
+		}
+
+		if (LastScene) 
+		{
+			eFader = FindObjectOfType<EndFader> ();
+		}
 
 
 		if (textFile != null) 
@@ -55,7 +70,6 @@ public class TextBoxManager : MonoBehaviour
 	{
 		if (currentLine <= endAtLine) 
 		{
-
 			if (useFader) 
 			{
 				theText.text = textLines [currentLine];				
@@ -71,26 +85,43 @@ public class TextBoxManager : MonoBehaviour
 
 		if (Input.GetKeyDown (KeyCode.Space)) 
 		{
-			currentLine += 1;	
+			currentLine += 1;
+			print (currentLine);
 		}
 
 		if (currentLine > endAtLine && isTalking && !endOfStage) 
 		{
-			fader.IsFaded = true;
+			if (fader != null) 
+			{
+				fader.IsFaded = true;
+			}
+
+			if (eFader != null) 
+			{
+				eFader.IsFaded = true;
+			}
+
 			isTalking = false;
-			DisableDialogueBox ();
+
+
+
+			if (DialogueBox != null)
+			{
+				DisableDialogueBox ();
+			}
 		}
 
-
-		//Freezes Movement
-		if (fader.IsFaded && DisableMovement || isTalking) 
+		if (playerController != null) 
 		{
-			playerController.CanMove = false;
-		}
 
-		if (fader.IsFaded && !isTalking) 
-		{
-			playerController.CanMove = true;
+			//Freezes Movement
+			if (fader.IsFaded && DisableMovement || isTalking) {
+				playerController.CanMove = false;
+			}
+
+			if (fader.IsFaded && !isTalking) {
+				playerController.CanMove = true;
+			}
 		}
 
 
@@ -102,19 +133,16 @@ public class TextBoxManager : MonoBehaviour
 		{
 			isTalking = true;
 
-				textLines = new string[1];
-				textLines = (theText.text.Split ('\n'));
+			textLines = new string[1];
+			textLines = (theText.text.Split ('\n'));
 
 
 			endOfStage = stageEnd;
 
-//			if (!PlayerData.AlignSet) 
-//			{
-				if (endAtLine == 0) 
-				{
-					endAtLine = textLines.Length - 1;
-				}
-//			}
+			if (endAtLine == 0) 
+			{
+				endAtLine = textLines.Length - 1;
+			}
 		}
 	}
 
