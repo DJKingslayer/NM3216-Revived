@@ -555,6 +555,8 @@ public class PlayerController : MonoBehaviour {
 		isTeleporting = true;
 		anim.SetBool ("Teleporting", true);
 		Invoke ("makeVulnerable", 3);
+
+		IncHP (1, 2);
 	}
 
 	void Dodge()
