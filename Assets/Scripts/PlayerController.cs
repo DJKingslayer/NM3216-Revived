@@ -573,7 +573,7 @@ public class PlayerController : MonoBehaviour {
 			source.PlayOneShot (PhaseShift);
 			particles.Play ();
 
-			IncHP (.5f, 1);
+			IncHP (.75f, 1);
 		}
 
 		if (PounceCD < PounceCoolDown) 
