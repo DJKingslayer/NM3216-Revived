@@ -280,6 +280,14 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+//	void OnCollisionStay2D(Collision2D other)
+//	{
+//		if (other.gameObject.CompareTag ("GROUND")) 
+//		{
+//			jumping = false;				
+//		}
+//	}
+
  
 	void MovePlayer(float playerSpeed)
 	{
@@ -392,7 +400,8 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
-	void Jump(){
+	void Jump()
+	{
 
 		rb.AddForce (new Vector2 (0,jumpspeedY));
 		source.PlayOneShot (Jump1);

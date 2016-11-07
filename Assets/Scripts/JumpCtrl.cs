@@ -23,8 +23,14 @@ public class JumpCtrl : MonoBehaviour {
 		if (other.CompareTag("Enemies")) 
 		{
 			playerController.ResetJump ();
-			print ("jumpreset");
 		}
 	} 
+
+	void OnCollisionEnter2D(Collision2D other)
+	{
+		if (other.gameObject.CompareTag ("GROUND")) {
+			playerController.ResetJump ();			
+		}
+	}
 
 }
