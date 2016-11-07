@@ -679,4 +679,9 @@ public class PlayerController : MonoBehaviour {
 	{
 		respawnPosition = transform.position;
 	}
+
+	public void HungerPang()
+	{
+		hPCurrent = 0;
+	}
 }
