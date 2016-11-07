@@ -76,7 +76,7 @@ public class StoryDialogue : MonoBehaviour {
 			if (counterB == 5) 
 			{
 				Invoke ("delayHowl", 3);
-				counterB = 0;
+				counterB = -1;
 			}
 		}
 
