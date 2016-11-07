@@ -67,6 +67,8 @@ public class PlayerController : MonoBehaviour {
 
 	private ParticleSystem particles;
 
+	private HungerCtrl hunger;
+
 
 	// Use this for initialization
 	void Start () {
@@ -79,6 +81,11 @@ public class PlayerController : MonoBehaviour {
 		particles = gameObject.GetComponent<ParticleSystem> ();
 		cFull = wolfSprite.color;
 		UI = GameObject.Find ("Main Text").GetComponent<Text> ();
+
+		if (SceneManager.GetActiveScene ().name == "IriMain")
+		{
+			hunger = FindObjectOfType<HungerCtrl> ();
+		}
 
 		source.pitch = 1;
 
@@ -616,6 +623,11 @@ public class PlayerController : MonoBehaviour {
 
 		isAlive = true;
 		sceneFader.IsFaded = true;
+
+		if (hunger != null)
+		{
+			hunger.currentHunger = hunger.TotalHunger;
+		}
 
 		if (PlayerData.godMode) 
 		{
