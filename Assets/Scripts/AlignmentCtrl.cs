@@ -6,20 +6,15 @@ public class AlignmentCtrl : MonoBehaviour {
 	
 	public TextAsset WhiteText, BlackText;
 
-	private TextBoxManager textBoxManager;
-
-	[SerializeField]
-	private float alignCost;
+	public float alignCost;
 
 	void Start()
 	{
-		textBoxManager = FindObjectOfType<TextBoxManager> ();
+		if (alignCost == 0) 
+		{
+			alignCost = 7;
+		}
 	}
-
-	void Update ()
-	{	
-	}
-	
 
 	public void SetAlign()
 	{
