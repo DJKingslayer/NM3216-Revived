@@ -50,9 +50,13 @@ public class BirdCtrl : MonoBehaviour {
 		if (Respawns) 
 		{
 			Invoke ("Respawn", RespawnTimer);
+			Destroy (gameObject, DeathTimer);
 		}
 
-		Destroy (gameObject, DeathTimer);
+		if (!Respawns) 
+		{
+			InvokeRepeating ("turn", DeathTimer, DeathTimer);
+		}
 
 	}
 
@@ -87,6 +91,17 @@ public class BirdCtrl : MonoBehaviour {
 	void Respawn ()
 	{
 		Instantiate (Bird,originalPos,Quaternion.identity);
+	}
+
+	void turn()
+	{
+		Vector3 temp = gameObject.transform.localScale;
+		temp.x *= -1;
+		transform.localScale = temp;
+
+		Vector2 tempVelocity = rb.velocity;
+		tempVelocity *= -1;
+		rb.velocity = tempVelocity;
 	}
 
 
