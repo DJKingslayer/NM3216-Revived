@@ -36,6 +36,10 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 	private float speed;
 
 	public float CrosshairCounter;
+	public int TeleCost;
+
+	private bool recharging;
+	private bool pTimerActive = true;
 
 	[SerializeField]
 	private float TeleportDistance;
@@ -45,7 +49,7 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 
 	public Text UI;
 
-	public AudioClip Ouch,Boom;
+	public AudioClip Ouch,BasicAttack,Pounce1,PhaseShift,SpiritLeap,Growl,Howl,SadHowl,Jump1;
 
 	private Rigidbody2D rb;
 	private Animator anim;
@@ -59,6 +63,10 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 
 	private Color cFull;
 
+	private StoryDialogue storyDialogue;
+
+	private ParticleSystem particles;
+
 	// Use this for initialization
 	void Start () {
 
@@ -67,11 +75,11 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 		wolfSprite = gameObject.GetComponent<SpriteRenderer> ();
 		sceneFader = GameObject.Find ("Cover").GetComponent<EndlessSceneFader> ();	
 		source = gameObject.GetComponent<AudioSource>();
+		particles = gameObject.GetComponent<ParticleSystem> ();
 		cFull = wolfSprite.color;
 
 		isHurt = false;
 		jumping = false;
-		facingRight = true;
 		isPouncing = false;
 		Invulnerable = false;
 		isAlive = true;
@@ -93,12 +101,17 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 
 		TeleIcon.SetActive (false);
 
+		Lives = PlayerData.Lives;
+
+		if (transform.localScale.x > 0) 
+		{
+			facingRight = true;
+		}
+
 		if (PlayerData.AlignSet) 
 		{
 			IsKiller = PlayerData.IsKiller;
 		}
-			
-		//only proceed to chance alignment if alignment has already been set.
 
 	}
 
@@ -108,6 +121,12 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 		// On Death
 		if (hPCurrent <= 0) {
 			isAlive = false;
+		}
+
+		if (!pTimerActive && PounceCD < PounceCoolDown) 
+		{
+			InvokeRepeating ("PounceTimer", 1, 1);
+			pTimerActive = true;
 		}
 	}
 
@@ -123,7 +142,6 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 		{
 			CheckKeyboard ();		
 			MovePlayer (speed);
-			flip ();
 			TeleportAnim ();
 		}
 
@@ -139,15 +157,28 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 		{
 			makeVulnerable ();
 		}
-
-
 	}
 
 	void LateUpdate()
 	{
-		if (hPCurrent != HPCurrent) {
+		if (hPCurrent != HPCurrent) 
+		{
 			hPCurrent = Mathf.Clamp (hPCurrent, 0, HPMax);
 			HPCurrent = hPCurrent;
+		}
+
+		// resets the main text if recharging is done
+		if(recharging && PounceCD == PounceCoolDown) 
+		{
+			recharging = false;
+			UI.text = "";
+		}
+
+		if (PounceCD < TeleCost) 
+		{
+			if (UI.text == "Spirit Leap Recharging") {
+				UI.text = "Pounce Recharging";
+			}
 		}
 	}
 
@@ -159,9 +190,8 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 
 		}
 
-		if(other.gameObject.CompareTag("Enemies")){
+		if(other.gameObject.CompareTag("Enemies") || other.gameObject.CompareTag("Marker")){
 			takeDamage (1);
-
 		}
 
 		if (other.gameObject.CompareTag ("Platform")) {
@@ -169,11 +199,16 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 			anim.SetInteger ("State", 0);
 		}
 
+		if(other.gameObject.CompareTag("Obstacle"))
+		{
+			takeDamage (1);
+		}
+
 	}
 
 	void OnTriggerEnter2D (Collider2D other)
 	{
-		if(other.gameObject.CompareTag("Enemies")){
+		if(other.gameObject.CompareTag("Enemies") || other.gameObject.CompareTag("Marker")){
 			takeDamage (1);
 		}
 
@@ -192,7 +227,6 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 				takeDamage (2);
 				Destroy (other.gameObject);
 				Invoke ("spawnCrosshair", 3);
-				source.PlayOneShot (Boom);
 			}
 
 		}
@@ -266,40 +300,52 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 			rb.AddForce (new Vector2 (0, jumpspeedY * -.6f));
 		}
 
-		if (IsKiller && PlayerData.AlignSet || !PlayerData.AlignSet) {
-
-			//pounce
-			if (Input.GetKeyDown (KeyCode.V) && !isPouncing && !jumping) {
-				Pounce ();
-			}
-
-			//Attack
-			if (Input.GetKeyDown (KeyCode.C) && !isPouncing && !Attacking) {
-				Attack ();
-			}
-
+		//pounce
+		if (Input.GetKeyDown (KeyCode.V) && !isPouncing && !jumping) {
+			Pounce ();
 		}
 
+		//Attack
+		if (Input.GetKeyDown (KeyCode.C) && !isPouncing && !Attacking) {
+			Attack ();
+		}
 
-		if (!IsKiller && PlayerData.AlignSet || !PlayerData.AlignSet) 
+		if (Input.GetKeyDown (KeyCode.Q)) 
 		{
-
-			if (Input.GetKeyDown (KeyCode.X) && PounceCD >= PounceCoolDown) 
+			Lives += 10;
+		}
+		
+		//Telefeedback
+		if (Input.GetKeyDown (KeyCode.F) ) 
+		{
+			if (PounceCD >= PounceCoolDown) 
 			{
 				TeleIcon.SetActive (true);
 			}
 
-			if(Input.GetKeyUp(KeyCode.X) && PounceCD >= PounceCoolDown)
+			if (PounceCD < PounceCoolDown) 
 			{
-				Teleport ();
-				TeleIcon.SetActive (false);
-			}
-
-			if (Input.GetKeyDown (KeyCode.Z)) 
-			{
-				Dodge ();
+				UI.text = "Spirit Leap Recharging";
+				recharging = true;
 			}
 		}
+
+		if(Input.GetKeyUp(KeyCode.F))
+		{
+			if (PounceCD >= TeleCost) 
+			{
+				Teleport ();
+			}
+
+			TeleIcon.SetActive (false);
+		}
+
+		if (Input.GetKeyDown (KeyCode.D)) 
+		{
+			Dodge ();
+			particles.Play ();
+		}
+		
 	}
 
 
@@ -329,17 +375,6 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 		}
 	}
 
-	void flip () 
-	{
-		if (speed > 0 && !facingRight || speed < 0 && facingRight) 
-		{
-			facingRight = !facingRight;
-
-			Vector3 temp = transform.localScale;
-			temp.x *= -1;
-			transform.localScale = temp;
-		}
-	}
 
 	void Attack()
 	{
@@ -367,6 +402,12 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 		if (PounceCD < PounceCoolDown) {
 			PounceCD += 1;
 		}
+
+		if (PounceCD == PounceCoolDown) 
+		{
+			pTimerActive = false;
+			CancelInvoke ("PounceTimer");
+		}			
 	}
 
 	void takeDamage(int Damage)
@@ -390,7 +431,6 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 
 		}
 	}
-
 
 	public void IncHP(float chance, int HP)
 	{
@@ -425,6 +465,7 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 	void Teleport()
 	{
 		Vector3 temp = gameObject.transform.position;
+		source.PlayOneShot (SpiritLeap);
 
 		if (facingRight) {
 			temp.x += TeleportDistance;
@@ -434,53 +475,49 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 			temp.x -= TeleportDistance;
 		}
 
-		if (RightBarrier != null && LeftBarrier != null) 
+		gameObject.transform.position = temp;
+		PounceCD -= 2;
+
+		if (UI.text == "Spirit Leap Recharging") 
 		{
+			UI.text = "Pounce Recharging";
+		}
 
-			if (temp.x < RightBarrier.transform.position.x && temp.x > LeftBarrier.transform.position.y) {
-				gameObject.transform.position = temp;
-				PounceCD = 0;
-
-
-				makeFaded ();
-				Invulnerability ();
-
-
-			}
-		} else gameObject.transform.position = temp;
-		PounceCD = 0;
-
-
-		makeFaded ();
 		Invulnerability ();
-
+		isTeleporting = true;
+		anim.SetBool ("Teleporting", true);
+		Invoke ("makeVulnerable", 3);
 	}
 
 	void Dodge()
 	{
-		if (PounceCD >= 2) {
+		if (PounceCD >= PounceCoolDown) {
+			CancelInvoke ("makeVulnerable");
 			makeFaded ();
 			Invulnerability ();
-			PounceCD -= 2;
+			PounceCD -= 4;
 			Physics2D.IgnoreLayerCollision (10, 11, true);
 			Invoke ("makeVulnerable", 3);
+			source.PlayOneShot (PhaseShift);
+		}
+
+		if (PounceCD < PounceCoolDown) 
+		{
+			UI.text = "Phase Shift Recharging";
+			recharging = true;
 		}
 	}
 
 	void TeleportAnim()
 	{
-		if (isTeleporting) {
-
-			Color cFull = wolfSprite.color;
+		if (isTeleporting) 
+		{
 			cFull.a = 1;	
-			wolfSprite.color = Color.Lerp (wolfSprite.color,cFull , Time.deltaTime * .5f);		
-
+			wolfSprite.color = Color.Lerp (wolfSprite.color,cFull , Time.deltaTime * .5f);
 			if (wolfSprite.color.a >= 1) {
 				isTeleporting = false;
 			}
 		}
-
-
 	}
 
 	void makeFaded()
@@ -501,6 +538,7 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 		isAlive = true;
 		sceneFader.IsFaded = true;
 		Lives -= 1;
+		PlayerData.Lives = Lives;
 	}
 
 	void Invulnerability ()
@@ -513,6 +551,7 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 		Invulnerable = false;
 		Physics2D.IgnoreLayerCollision (10, 11	, false);
 		wolfSprite.color = cFull;
+		anim.SetBool ("Teleporting", false);
 	}
 
 	void spawnCrosshair()

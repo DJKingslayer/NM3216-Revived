@@ -5,6 +5,8 @@ public class BirdCtrl : MonoBehaviour {
 
 	public float Speed;
 
+	private float currentSpeed;
+
 	public bool Respawns;
 
 	public GameObject Bird;
@@ -20,13 +22,16 @@ public class BirdCtrl : MonoBehaviour {
 	public float RespawnTimer;
 	public float DeathTimer;
 
+	private bool facingRight;
+
 	void Awake()
 	{
 		originalPos = gameObject.transform.position;
 	}
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 
 		scene = FindObjectOfType<SceneFader> ();
 	
@@ -50,21 +55,35 @@ public class BirdCtrl : MonoBehaviour {
 		if (Respawns) 
 		{
 			Invoke ("Respawn", RespawnTimer);
+			Destroy (gameObject, DeathTimer);
 		}
 
-		Destroy (gameObject, DeathTimer);
+		if (!Respawns) 
+		{
+			InvokeRepeating ("turn", DeathTimer, DeathTimer);
+		}
 
 	}
 
-	void Update(){
-
+	void Update()
+	{
 		if (scene.IsFaded) {
-			
-			rb.velocity = new Vector2 (-Speed, 0);
-		} else rb.velocity = new Vector2 (0, 0);
+			if (transform.localScale.x >= 0) {
+				currentSpeed = -Speed;
+			}
+
+			if (transform.localScale.x < 0) {
+				currentSpeed = Speed;
+			}
+
+			rb.velocity = new Vector2 (currentSpeed, 0);
+
+		} else	rb.velocity = new Vector2 (0, 0);
+
+
+		
 
 	}
-
 	void OnCollisionEnter2D(Collision2D other)
 	{
 		if(other.gameObject.CompareTag("Wall"))
@@ -87,6 +106,17 @@ public class BirdCtrl : MonoBehaviour {
 	void Respawn ()
 	{
 		Instantiate (Bird,originalPos,Quaternion.identity);
+	}
+
+	void turn()
+	{
+		Vector3 temp = gameObject.transform.localScale;
+		temp.x *= -1;
+		transform.localScale = temp;
+
+		Vector2 tempVelocity = rb.velocity;
+		tempVelocity.x *= -1;
+		rb.velocity = tempVelocity;
 	}
 
 

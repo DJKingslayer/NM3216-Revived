@@ -27,10 +27,6 @@ public class DestroyOther : MonoBehaviour {
 			playerController.IncHP (chance,1);
 			playerController.CountDeath ();
 
-//			Destroy (other.gameObject);
-			Destroy (gameObject);
-
-
 		}
 
 		// Please Add playerdata.iskiller
@@ -49,7 +45,6 @@ public class DestroyOther : MonoBehaviour {
 			
 				story.CountMarker ();
 			
-				Destroy (gameObject);
 			}
 		}
 
