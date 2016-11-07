@@ -32,7 +32,11 @@ public class ReHealth : MonoBehaviour {
 			if (!isUsed) 
 			{
 				playerController.IncHP (1, 1);
-				hunger.EatBerry ();
+
+				if (hunger != null) 
+				{
+					hunger.EatBerry ();
+				}
 
 			}
 

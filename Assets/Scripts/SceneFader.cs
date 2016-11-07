@@ -98,7 +98,7 @@ public class SceneFader : MonoBehaviour {
 
 			if (playerController.Lives == 0) 
 			{
-				NextKey.text = "Press M";
+				NextKey.text = "Press Space";
 			}
 
 		} else
