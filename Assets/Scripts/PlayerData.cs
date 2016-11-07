@@ -8,5 +8,7 @@
 
 	static public int Scene = 1;
 
-	static public int Lives = 5;
+	static public int Lives = 10;
+
+	static public bool godMode;
 }
