@@ -556,7 +556,6 @@ public class PlayerController : MonoBehaviour {
 		anim.SetBool ("Teleporting", true);
 		Invoke ("makeVulnerable", 3);
 
-		IncHP (1, 2);
 	}
 
 	void Dodge()
@@ -570,6 +569,8 @@ public class PlayerController : MonoBehaviour {
 			Invoke ("makeVulnerable", 3);
 			source.PlayOneShot (PhaseShift);
 			particles.Play ();
+
+			IncHP (1, 2);
 		}
 
 		if (PounceCD < PounceCoolDown) 
