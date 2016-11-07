@@ -6,6 +6,7 @@ public class StoryDialogue : MonoBehaviour {
 
 	[SerializeField]
 	private int counter,counterB;
+	private int PresentedCounter;
 
 	private AudioSource source;
 
@@ -32,6 +33,7 @@ public class StoryDialogue : MonoBehaviour {
 	void Start () {
 		counter = 0;
 		counterB = 0;
+		PresentedCounter = 0;
 		source = gameObject.GetComponent<AudioSource> ();
 
 		textBoxManager = FindObjectOfType<TextBoxManager> ();
@@ -74,7 +76,7 @@ public class StoryDialogue : MonoBehaviour {
 			}
 		}
 
-		if (counter == TotalEnemies) 
+		if (PresentedCounter == TotalEnemies) 
 		{
 			textBoxManager.ReloadScript (FenrirText, true);
 
@@ -84,12 +86,13 @@ public class StoryDialogue : MonoBehaviour {
 			textBoxManager.useFader = false;
 		}
 
-		killCounter.text = counter.ToString () + "/" + TotalEnemies.ToString ();
+		killCounter.text = PresentedCounter.ToString () + "/" + TotalEnemies.ToString ();
 	}
 
 	public void CountMarker()
 	{
 		counter += 1;
+		PresentedCounter += 1;
 	}
 
 	void delayGrowl()
