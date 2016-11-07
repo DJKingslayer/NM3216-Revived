@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour {
 	public bool isAlive;
 	public bool CanMove;
 	public bool IsKiller;
-	public bool AlignTest;
 	public bool Iri, Fenrir;
 
 	//for testing only (makes player invulnerable)
