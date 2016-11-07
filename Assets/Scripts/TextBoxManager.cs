@@ -71,7 +71,8 @@ public class TextBoxManager : MonoBehaviour
 
 		if (Input.GetKeyDown (KeyCode.Space)) 
 		{
-			currentLine += 1;	
+			currentLine += 1;
+			print (currentLine);
 		}
 
 		if (currentLine > endAtLine && isTalking && !endOfStage) 
@@ -102,19 +103,16 @@ public class TextBoxManager : MonoBehaviour
 		{
 			isTalking = true;
 
-				textLines = new string[1];
-				textLines = (theText.text.Split ('\n'));
+			textLines = new string[1];
+			textLines = (theText.text.Split ('\n'));
 
 
 			endOfStage = stageEnd;
 
-//			if (!PlayerData.AlignSet) 
-//			{
-				if (endAtLine == 0) 
-				{
-					endAtLine = textLines.Length - 1;
-				}
-//			}
+			if (endAtLine == 0) 
+			{
+				endAtLine = textLines.Length - 1;
+			}
 		}
 	}
 
