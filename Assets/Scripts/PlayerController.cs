@@ -481,6 +481,11 @@ public class PlayerController : MonoBehaviour {
 			return;
 		}
 
+		if (PlayerData.godMode) 
+		{
+			return;
+		}	
+
 		if (sceneFader.IsFaded && !Invulnerable) {
 
 			rb.velocity = new Vector2 (0, rb.velocity.y);
@@ -493,7 +498,6 @@ public class PlayerController : MonoBehaviour {
 			Invulnerability ();
 
 			makeFaded ();
-
 		}
 	}
 
@@ -613,6 +617,11 @@ public class PlayerController : MonoBehaviour {
 
 		isAlive = true;
 		sceneFader.IsFaded = true;
+
+		if (PlayerData.godMode) 
+		{
+			return;
+		}
 		Lives -= 1;
 		PlayerData.Lives = Lives;
 	}
