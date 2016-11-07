@@ -112,7 +112,8 @@ public class SceneFader : MonoBehaviour {
 
 	void FadeToBlack ()
 	{
-		if (playerController.isAlive && playerController != null) {
+		if (playerController.isAlive && playerController != null) 
+		{
 			cover.color = Color.Lerp (cover.color, Color.black, Time.deltaTime * fadeTime);
 			fadeScreenText.color = Color.Lerp (fadeScreenText.color, Color.white, Time.deltaTime * fadeTime);
 			NextKey.color = Color.Lerp (fadeScreenText.color, Color.white, Time.deltaTime * fadeTime);
