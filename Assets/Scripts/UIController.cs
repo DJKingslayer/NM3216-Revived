@@ -16,7 +16,7 @@ public class UIController : MonoBehaviour {
 	{
 
 		playerController = FindObjectOfType<PlayerController> ();
-		lives.text = "Lives :" + playerController.Lives.ToString();
+		lives.text = "Lives: " + playerController.Lives.ToString();
 
 	}
 
