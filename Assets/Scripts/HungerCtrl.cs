@@ -7,7 +7,7 @@ public class HungerCtrl : MonoBehaviour {
 	private Image hungerBar;
 
 	[SerializeField]
-	private float currentHunger;
+	public float currentHunger;
 	public float TotalHunger;
 
 	public bool GetHungry;
@@ -33,9 +33,9 @@ public class HungerCtrl : MonoBehaviour {
 //		hungerBar.fillAmount = Mathf.Lerp (0f, 1f, (currentHunger / TotalHunger));
 		hungerBar.fillAmount = Mathf.Lerp ((currentHunger / TotalHunger), hungerBar.fillAmount, -Time.deltaTime);
 
-		if (GetHungry && fader.IsFaded) 
+		if (!GetHungry && fader.IsFaded) 
 		{
-			GetHungry = false;
+			GetHungry = true;
 			InvokeRepeating ("decreaseCurr", 1, 1);	
 		}
 
