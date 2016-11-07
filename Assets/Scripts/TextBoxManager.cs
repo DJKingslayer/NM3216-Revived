@@ -86,7 +86,6 @@ public class TextBoxManager : MonoBehaviour
 		if (Input.GetKeyDown (KeyCode.Space)) 
 		{
 			currentLine += 1;
-			print (currentLine);
 		}
 
 		if (currentLine > endAtLine && isTalking && !endOfStage) 
