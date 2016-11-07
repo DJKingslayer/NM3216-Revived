@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class StoryDialogue : MonoBehaviour {
 
 	[SerializeField]
 	private int counter,counterB;
+
+	[SerializeField]
+	private int PresentedCounter;
 
 	private AudioSource source;
 
@@ -29,9 +33,11 @@ public class StoryDialogue : MonoBehaviour {
 	private Text killCounter;
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 		counter = 0;
 		counterB = 0;
+		PresentedCounter = 0;
 		source = gameObject.GetComponent<AudioSource> ();
 
 		textBoxManager = FindObjectOfType<TextBoxManager> ();
@@ -74,22 +80,28 @@ public class StoryDialogue : MonoBehaviour {
 			}
 		}
 
-		if (counter == TotalEnemies) 
+		if (PresentedCounter == TotalEnemies) 
 		{
 			textBoxManager.ReloadScript (FenrirText, true);
+//			textBoxManager.endOfStage = true;
 
 			textBoxManager.currentLine = 5;
 			textBoxManager.endAtLine = 5;
-
 			textBoxManager.useFader = false;
+
+			if (Input.GetKeyDown (KeyCode.Space))
+			{
+				SceneManager.LoadScene ("End");
+			}
 		}
 
-		killCounter.text = counter.ToString () + "/" + TotalEnemies.ToString ();
+		killCounter.text = PresentedCounter.ToString () + "/" + TotalEnemies.ToString ();
 	}
 
 	public void CountMarker()
 	{
 		counter += 1;
+		PresentedCounter += 1;
 	}
 
 	void delayGrowl()
