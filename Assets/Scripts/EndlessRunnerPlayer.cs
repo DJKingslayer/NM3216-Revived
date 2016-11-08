@@ -56,16 +56,17 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 	private AudioSource source;
 	private EndlessSceneFader sceneFader;
 	private Vector3 respawnPosition;
+	private Vector3 startPosPlayer;
+	private Vector3 startPosPG;
 
 	private Transform PouncePos;
 	private Transform crosshairLoc;
 	private Transform feedbackLoc;
 
 	private Color cFull;
-
 	private StoryDialogue storyDialogue;
-
 	private ParticleSystem particles;
+	private PlatformGenerator platformGen;
 
 	// Use this for initialization
 	void Start () {
@@ -77,6 +78,11 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 		source = gameObject.GetComponent<AudioSource>();
 		particles = gameObject.GetComponent<ParticleSystem> ();
 		cFull = wolfSprite.color;
+		//UI = GameObject.Find ("Main Text").GetComponent<Text> ();
+
+		platformGen = GameObject.Find("Platform Generator").GetComponent<PlatformGenerator> ();
+		startPosPG = platformGen.transform.position;
+		startPosPlayer = gameObject.transform.position;
 
 		isHurt = false;
 		jumping = false;
@@ -112,14 +118,14 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 		{
 			IsKiller = PlayerData.IsKiller;
 		}
-
 	}
 
 	// Update is called once per frame
 	void Update () 
 	{
 		// On Death
-		if (hPCurrent <= 0) {
+		if (hPCurrent <= 0) 
+		{
 			isAlive = false;
 		}
 
@@ -248,29 +254,21 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 
 	}
 
+	void OnTriggerStay2D(Collider2D other)
+	{
+		if(other.gameObject.CompareTag("Enemies") || other.gameObject.CompareTag("Marker"))
+		{
+			takeDamage (1);
+		}
+	}
 
 	void MovePlayer(float playerSpeed)
 	{
-		//code for player movement
-		if(playerSpeed < 0 && ! jumping  || playerSpeed > 0 && !jumping)
-		{
-			if (isHurt == false)
-			{
-				anim.SetInteger("State",1);
-			}
-		}
-
-		if(playerSpeed == 0 && !jumping && !isPouncing)
-		{
-			if (isHurt == false) 
-			{
-				anim.SetInteger ("State", 0);
-			}
-		}
 
 		//Default movement
 		if (!isPouncing &&!isHurt) {
 			rb.velocity = new Vector2 (speedX, rb.velocity.y);
+			anim.SetInteger ("State", 1);
 			//rb.velocity = new Vector3(playerSpeed, rb.velocity.y,0);
 		}
 
@@ -284,7 +282,6 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 
 	void CheckKeyboard(){
 
-
 		speed = Input.GetAxis ("Horizontal") * speedX;
 
 		//Jump movement
@@ -292,6 +289,7 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 		{
 			Jump ();
 			jumping = true;
+			anim.SetInteger ("State", 4);
 		}
 
 		//fall faster
@@ -318,12 +316,12 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 		//Telefeedback
 		if (Input.GetKeyDown (KeyCode.F) ) 
 		{
-			if (PounceCD >= PounceCoolDown) 
+			if (PounceCD >= 2) 
 			{
 				TeleIcon.SetActive (true);
 			}
 
-			if (PounceCD < PounceCoolDown) 
+			if (PounceCD < 2) 
 			{
 				UI.text = "Spirit Leap Recharging";
 				recharging = true;
@@ -349,44 +347,52 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 	}
 
 
-	void Jump(){
+	void Jump()
+	{
 
 		rb.AddForce (new Vector2 (0,jumpspeedY));
-
+		source.PlayOneShot (Jump1);
 	}
 
 	void Pounce(){
 
-		if (PounceCD >= PounceCoolDown) {
+		if (PounceCD >= PounceCoolDown) 
+		{
 			isPouncing = true;
 			jumping = true;
 			anim.SetInteger ("State", 2);
-			PounceCD = 0;
+			PounceCD -= PounceCoolDown;
+			source.PlayOneShot (Pounce1);
+
 
 			if (facingRight) {
 				rb.AddForce (PounceForce);
 			}
-
-			if (!facingRight) {
-				rb.AddForce (new Vector2(- PounceForce.x , PounceForce.y));			
-			}
-
+				
 			Instantiate (Pouncer, PouncePos.position, Quaternion.identity, gameObject.transform);
 		}
+
+		if (PounceCD < PounceCoolDown) 
+		{
+			UI.text = "Pounce Recharging";
+			recharging = true;
+		}
+
 	}
 
 
 	void Attack()
 	{
-		if (PounceCD > 1) {
+		if (PounceCD >= 1) {
 
 			Instantiate (Slash, PouncePos.position, Quaternion.identity);
 			Attacking = true;
 
-			PounceCD -= 2;
+			PounceCD -= 1;
 
 			Invoke ("AttackReset", .5f);
-			//			anim.SetInteger ("State", 1);
+			anim.SetInteger ("State", 3);
+			source.PlayOneShot(BasicAttack);
 		}
 
 	}
@@ -412,9 +418,15 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 
 	void takeDamage(int Damage)
 	{
-		if (isTest) {
+		if (!CanMove) 
+		{
 			return;
 		}
+
+		if (PlayerData.godMode) 
+		{
+			return;
+		}	
 
 		if (sceneFader.IsFaded && !Invulnerable) {
 
@@ -428,7 +440,6 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 			Invulnerability ();
 
 			makeFaded ();
-
 		}
 	}
 
@@ -491,7 +502,7 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 
 	void Dodge()
 	{
-		if (PounceCD >= PounceCoolDown) {
+		if (PounceCD >= 4) {
 			CancelInvoke ("makeVulnerable");
 			makeFaded ();
 			Invulnerability ();
@@ -499,6 +510,9 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 			Physics2D.IgnoreLayerCollision (10, 11, true);
 			Invoke ("makeVulnerable", 3);
 			source.PlayOneShot (PhaseShift);
+			particles.Play ();
+
+			IncHP (.75f, 1);
 		}
 
 		if (PounceCD < PounceCoolDown) 
@@ -530,13 +544,24 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 
 	void Respawn()
 	{
-		transform.position = respawnPosition;
+		//Prevent Respawning too low
+		Vector3 limit = respawnPosition;
+		limit.y = Mathf.Clamp (limit.y, 0f, 100f);
+		transform.position = limit;
+
 		hPCurrent = HPMax;
 		makeFaded ();
 		Invulnerability ();
 
 		isAlive = true;
 		sceneFader.IsFaded = true;
+
+		platformGen.transform.position = startPosPG;
+
+		if (PlayerData.godMode) 
+		{
+			return;
+		}
 		Lives -= 1;
 		PlayerData.Lives = Lives;
 	}
