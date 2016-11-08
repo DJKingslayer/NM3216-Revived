@@ -21,13 +21,11 @@ public class PlatformGenerator : MonoBehaviour {
 	private float maxHeight; 
 	public float maxHeightChange;
 	private float heightChange;
-	private EndlessRunnerPlayer endlessPlayer;
-	private Vector3 startPos;
+
 	//public ObjectPooler[] objectPools; 
 
 	// Use this for initialization
 	void Start () {
-		endlessPlayer = GameObject.Find("Player").GetComponent<EndlessRunnerPlayer> ();
 		//platformWidth = platform.GetComponent<BoxCollider2D>().size.x;
 		platformWidths = new float[platforms.Length];
 
@@ -58,19 +56,9 @@ public class PlatformGenerator : MonoBehaviour {
 				heightChange = minHeight;
 			}
 
-			if (endlessPlayer.isAlive==false) 
-			{
-				if (endlessPlayer.isAlive == true) 
-				{
-					transform.position = startPos;
-				}
-			}
-
 			transform.position = new Vector3 (transform.position.x + (platformWidths[platformSelector]) + dist, heightChange, transform.position.z);
 
 			Instantiate (platforms[platformSelector], transform.position, transform.rotation);
-
-
 			/*GameObject newPlatform = objectPools[platformSelector].GetPooledObject();
 
 			newPlatform.transform.position = transform.position;

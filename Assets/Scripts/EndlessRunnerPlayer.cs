@@ -56,7 +56,6 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 	private AudioSource source;
 	private EndlessSceneFader sceneFader;
 	private Vector3 respawnPosition;
-	private Vector3 startPos;
 
 	private Transform PouncePos;
 	private Transform crosshairLoc;
@@ -68,8 +67,6 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 
 	private ParticleSystem particles;
 
-	private PlatformGenerator platformGen;
-
 	// Use this for initialization
 	void Start () {
 
@@ -80,9 +77,6 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 		source = gameObject.GetComponent<AudioSource>();
 		particles = gameObject.GetComponent<ParticleSystem> ();
 		cFull = wolfSprite.color;
-
-		platformGen = GameObject.Find("Platform Generator").GetComponent<PlatformGenerator> ();
-		startPos = platformGen.transform.position;
 
 		isHurt = false;
 		jumping = false;
@@ -258,34 +252,25 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 	void MovePlayer(float playerSpeed)
 	{
 		//code for player movement
-		/*if(playerSpeed < 0 && ! jumping  || playerSpeed > 0 && !jumping)
+		if(playerSpeed < 0 && ! jumping  || playerSpeed > 0 && !jumping)
 		{
 			if (isHurt == false)
 			{
 				anim.SetInteger("State",1);
 			}
-		}*/
+		}
 
-		/*if(playerSpeed == 0 && !jumping && !isPouncing)
+		if(playerSpeed == 0 && !jumping && !isPouncing)
 		{
 			if (isHurt == false) 
 			{
 				anim.SetInteger ("State", 0);
 			}
-		}*/
-
-		/*if(playerSpeed > 0 && !jumping && !isPouncing)
-		{
-			if (isHurt == false) 
-			{
-				anim.SetInteger ("State", 1);
-			}
-		}*/
+		}
 
 		//Default movement
 		if (!isPouncing &&!isHurt) {
 			rb.velocity = new Vector2 (speedX, rb.velocity.y);
-			anim.SetInteger ("State", 1);
 			//rb.velocity = new Vector3(playerSpeed, rb.velocity.y,0);
 		}
 
@@ -554,7 +539,6 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 		sceneFader.IsFaded = true;
 		Lives -= 1;
 		PlayerData.Lives = Lives;
-		platformGen.transform.position = startPos;
 	}
 
 	void Invulnerability ()
