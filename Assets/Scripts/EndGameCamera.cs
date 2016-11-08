@@ -7,6 +7,8 @@ public class EndGameCamera : MonoBehaviour {
 
 	public float ScrollSpeed;
 
+	public float EndPosition;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -24,7 +26,7 @@ public class EndGameCamera : MonoBehaviour {
 //		}
 
 		Vector3 temp = transform.position;
-		temp.y = Mathf.Clamp (transform.position.y,-28.75f, -0.19f);
+		temp.y = Mathf.Clamp (transform.position.y,EndPosition, -0.19f);
 		transform.position = temp;
 	}
 }
