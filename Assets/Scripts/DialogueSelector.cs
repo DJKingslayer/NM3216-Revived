@@ -51,14 +51,13 @@ public class DialogueSelector : MonoBehaviour {
 	{
 		if (other.name == "Player") 
 		{
-
 			sfx.PlaySfx (Ding);
 			// normal Running
 			if (!isEnd) 
 			{
 				theTextbox.currentLine = startLine;
-				hasActivated = true;
 				theTextbox.ReloadScript (theText,isEnd);
+				hasActivated = true;
 								
 				if (endLine > 0 || IgnoreEndLine) 
 				{

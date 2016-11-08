@@ -13,7 +13,8 @@ public class JumpCtrl : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.CompareTag ("GROUND") || other.CompareTag ("Enemies") || other.CompareTag ("Platform") || other.CompareTag("Obstacle")) {
+		if (other.CompareTag ("GROUND") || other.CompareTag ("Enemies") || other.CompareTag ("Platform") || other.CompareTag("Obstacle") || other.CompareTag("Boulder")) 
+		{
 			playerController.ResetJump ();
 		}
 	}
@@ -23,8 +24,15 @@ public class JumpCtrl : MonoBehaviour {
 		if (other.CompareTag("Enemies")) 
 		{
 			playerController.ResetJump ();
-			print ("jumpreset");
 		}
 	} 
+
+	void OnCollisionEnter2D(Collision2D other)
+	{
+		if (other.gameObject.CompareTag ("GROUND") || other.gameObject.CompareTag ("Boulder")) 
+		{
+			playerController.ResetJump ();			
+		}
+	}
 
 }

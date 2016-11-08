@@ -32,6 +32,8 @@ public class StoryDialogue : MonoBehaviour {
 
 	private Text killCounter;
 
+	private SceneFader fader;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -47,6 +49,8 @@ public class StoryDialogue : MonoBehaviour {
 		dialogueSprite = GameObject.Find ("Dialogue Picture").GetComponent<Image> ();
 
 		killCounter = GameObject.Find ("Kill Count").GetComponent<Text>();
+
+		fader = FindObjectOfType<SceneFader> ();
 	}
 	
 	// Update is called once per frame
@@ -80,23 +84,32 @@ public class StoryDialogue : MonoBehaviour {
 			}
 		}
 
+
 		if (PresentedCounter == TotalEnemies) 
 		{
 			textBoxManager.ReloadScript (FenrirText, true);
-//			textBoxManager.endOfStage = true;
 
 			textBoxManager.currentLine = 5;
 			textBoxManager.endAtLine = 5;
-			textBoxManager.useFader = false;
+			textBoxManager.useFader = true;
+			fader.IsFaded = false;
 
-			if (Input.GetKeyDown (KeyCode.Space))
+			if(Input.GetKey(KeyCode.Space))
+			{				
+				LoadEnd ();	
+			}
+
+			if (!EndHowl) 
 			{
-				SceneManager.LoadScene ("DEnd");
+				delayHowl ();
+				EndHowl = true;
 			}
 		}
 
 		killCounter.text = PresentedCounter.ToString () + "/" + TotalEnemies.ToString ();
 	}
+
+	private bool EndHowl;
 
 	public void CountMarker()
 	{
@@ -131,5 +144,11 @@ public class StoryDialogue : MonoBehaviour {
 			dialogueSprite.sprite = Head3;
 		}
 
+	}
+
+
+	void LoadEnd()
+	{
+		SceneManager.LoadScene ("DEnd");
 	}
 }

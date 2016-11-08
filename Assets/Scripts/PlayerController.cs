@@ -203,7 +203,7 @@ public class PlayerController : MonoBehaviour {
 
 	void OnCollisionEnter2D (Collision2D other)
 	{
-		if (other.gameObject.CompareTag ("GROUND")) 
+		if (other.gameObject.CompareTag ("GROUND") || other.gameObject.CompareTag ("Boulder")) 
 		{
 			isHurt = false;
 			anim.SetInteger ("State", 0);
@@ -279,6 +279,7 @@ public class PlayerController : MonoBehaviour {
 			takeDamage (1);
 		}
 	}
+
 
  
 	void MovePlayer(float playerSpeed)
@@ -392,7 +393,8 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
-	void Jump(){
+	void Jump()
+	{
 
 		rb.AddForce (new Vector2 (0,jumpspeedY));
 		source.PlayOneShot (Jump1);
