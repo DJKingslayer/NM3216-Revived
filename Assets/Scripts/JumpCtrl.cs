@@ -28,7 +28,8 @@ public class JumpCtrl : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D other)
 	{
-		if (other.gameObject.CompareTag ("GROUND")) {
+		if (other.gameObject.CompareTag ("GROUND") || other.gameObject.CompareTag ("Boulder") ) 
+		{
 			playerController.ResetJump ();			
 		}
 	}

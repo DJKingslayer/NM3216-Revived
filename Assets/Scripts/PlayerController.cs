@@ -203,7 +203,7 @@ public class PlayerController : MonoBehaviour {
 
 	void OnCollisionEnter2D (Collision2D other)
 	{
-		if (other.gameObject.CompareTag ("GROUND")) 
+		if (other.gameObject.CompareTag ("GROUND") || other.gameObject.CompareTag ("Boulder")) 
 		{
 			isHurt = false;
 			anim.SetInteger ("State", 0);
