@@ -9,15 +9,16 @@ public class EndlessDialogueSelector : MonoBehaviour {
 
 	public int startLine;
 	public int endLine;
-	public int GoodStart, GoodEnd;
-	public int BadStart, BadEnd;
 
-	public EndlessTextBoxManager theTextbox;
+	public AudioClip Ding;
+
+	private EndlessTextBoxManager theTextbox;
 
 	public bool DestroyWhenActivated;
 	public bool isEnd, hasActivated;
 	public bool UseFader;
 	public bool FreezePlayer;
+	public bool IgnoreEndLine;
 
 	private EndlessSceneFader fader;
 
@@ -25,6 +26,7 @@ public class EndlessDialogueSelector : MonoBehaviour {
 
 	private EndlessRunnerPlayer endlessPlayer;
 
+	private SfxCtrl sfx;
 
 	// Use this for initialization
 	void Start () 
@@ -33,6 +35,7 @@ public class EndlessDialogueSelector : MonoBehaviour {
 		fader = FindObjectOfType<EndlessSceneFader> ();
 		endlessPlayer = FindObjectOfType<EndlessRunnerPlayer> ();
 		align = FindObjectOfType<AlignmentCtrl> ();
+		sfx = FindObjectOfType<SfxCtrl> ();
 
 		hasActivated = false;	
 	}
@@ -46,6 +49,7 @@ public class EndlessDialogueSelector : MonoBehaviour {
 	{
 		if (other.name == "Player") 
 		{
+			//sfx.PlaySfx (Ding);
 			// normal Running
 			if (!isEnd) 
 			{
@@ -68,19 +72,6 @@ public class EndlessDialogueSelector : MonoBehaviour {
 			{
 				align.SetAlign ();
 				theTextbox.ReloadScript (theText,isEnd);
-
-				if (!PlayerData.IsKiller) 
-				{
-					theTextbox.currentLine = GoodStart;
-					theTextbox.endAtLine = GoodEnd;
-				}
-
-				if (PlayerData.IsKiller) 
-				{
-					theTextbox.currentLine = BadStart;
-					theTextbox.endAtLine = BadEnd;
-				}
-
 			}
 
 			if (UseFader) 
@@ -101,6 +92,11 @@ public class EndlessDialogueSelector : MonoBehaviour {
 			{
 				endlessPlayer.MovementFreeze ();
 				endlessPlayer.CanMove = false;
+			}
+
+			if (Monster != null) 
+			{
+				Monster.SetActive (true);
 			}
 		}
 	}
