@@ -280,13 +280,6 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-//	void OnCollisionStay2D(Collision2D other)
-//	{
-//		if (other.gameObject.CompareTag ("GROUND")) 
-//		{
-//			jumping = false;				
-//		}
-//	}
 
  
 	void MovePlayer(float playerSpeed)
