@@ -1,0 +1,185 @@
+fileFormatVersion: 2
+guid: 138498d15512e41a9a725107d87d03cc
+timeCreated: 1478249587
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Dark Jump 1
+    21300002: Dark Jump 4
+    21300004: Dark Jump 7
+    21300006: Dark Jump 2
+    21300008: Dark Jump 5
+    21300010: Dark Jump 8
+    21300012: Dark Jump 3
+    21300014: Dark Jump 6
+    21300016: wolf_dark_jump_11
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Dark Jump 1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2900
+        width: 1200
+        height: 900
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Dark Jump 4
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 2900
+        width: 1200
+        height: 900
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Dark Jump 7
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 2900
+        width: 1200
+        height: 900
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Dark Jump 2
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 1719
+        width: 1200
+        height: 900
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Dark Jump 5
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 1737
+        width: 1200
+        height: 900
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Dark Jump 8
+      rect:
+        serializedVersion: 2
+        x: 2394
+        y: 1755
+        width: 1200
+        height: 900
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Dark Jump 3
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 487
+        width: 1200
+        height: 900
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Dark Jump 6
+      rect:
+        serializedVersion: 2
+        x: 1230
+        y: 481
+        width: 1200
+        height: 900
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wolf_dark_jump_11
+      rect:
+        serializedVersion: 2
+        x: 2436
+        y: 631
+        width: 1200
+        height: 900
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: Dark Wolf
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
