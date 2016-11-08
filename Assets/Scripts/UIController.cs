@@ -12,16 +12,16 @@ public class UIController : MonoBehaviour {
 
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 
 		playerController = FindObjectOfType<PlayerController> ();
-		lives.text = "Lives :" + playerController.Lives.ToString();	
+		lives.text = "Lives: " + playerController.Lives.ToString();
+
 	}
 
 	public void LoadScene(string SceneName)
 	{
-//		PlayerData.IsKiller = false;
-//		PlayerData.AlignSet = false;
 		SceneManager.LoadScene(SceneName);
 	}
 

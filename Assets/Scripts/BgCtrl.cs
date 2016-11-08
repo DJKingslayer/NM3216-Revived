@@ -5,14 +5,16 @@ public class BgCtrl : MonoBehaviour {
 
 	private Renderer rend;
 
-	public float speed;
+	private float speed;
 
 	private Vector3 playerOffset;
 	private Vector3 origin;
 
 	private GameObject player;
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
+		speed = .012f;
 		rend = gameObject.GetComponent<Renderer>();
 		player = GameObject.Find ("Player");
 

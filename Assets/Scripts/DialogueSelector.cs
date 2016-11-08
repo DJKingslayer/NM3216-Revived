@@ -10,8 +10,6 @@ public class DialogueSelector : MonoBehaviour {
 
 	public int startLine;
 	public int endLine;
-	public int GoodStart, GoodEnd;
-	public int BadStart, BadEnd;
 
 	public AudioClip Ding;
 
@@ -21,7 +19,7 @@ public class DialogueSelector : MonoBehaviour {
 	public bool isEnd, hasActivated;
 	public bool UseFader;
 	public bool FreezePlayer;
-	public bool MultiEnd;
+	public bool IgnoreEndLine;
 
 	private SceneFader fader;
 
@@ -53,21 +51,20 @@ public class DialogueSelector : MonoBehaviour {
 	{
 		if (other.name == "Player") 
 		{
-
 			sfx.PlaySfx (Ding);
 			// normal Running
 			if (!isEnd) 
 			{
 				theTextbox.currentLine = startLine;
-				hasActivated = true;
 				theTextbox.ReloadScript (theText,isEnd);
+				hasActivated = true;
 								
-				if (endLine != 0) 
+				if (endLine > 0 || IgnoreEndLine) 
 				{
 					theTextbox.endAtLine = endLine;
 				}
 				
-				if (endLine == 0) 
+				if (endLine == 0 && !IgnoreEndLine) 
 				{
 					theTextbox.endAtLine = theTextbox.textLines.Length - 1;
 				}
@@ -85,20 +82,6 @@ public class DialogueSelector : MonoBehaviour {
 				theTextbox.ReloadScript (theText,isEnd);
 				theTextbox.currentLine = startLine;
 				theTextbox.FixEndLine ();
-
-				if (MultiEnd) 
-				{
-					if (!PlayerData.IsKiller) {
-						theTextbox.currentLine = GoodStart;
-						theTextbox.endAtLine = GoodEnd;
-					}
-					
-					if (PlayerData.IsKiller) 
-					{
-						theTextbox.currentLine = BadStart;
-						theTextbox.endAtLine = BadEnd;
-					}
-				}
 
 			}
 

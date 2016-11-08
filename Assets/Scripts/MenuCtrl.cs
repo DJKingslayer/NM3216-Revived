@@ -43,5 +43,10 @@ public class MenuCtrl: MonoBehaviour
 	{
 		SceneManager.LoadScene ("Tutorial_Learning_Portion");
 	}
+
+	public void Difficulty(int Lives)
+	{
+		PlayerData.Lives = Lives;
+	}
 }
 	

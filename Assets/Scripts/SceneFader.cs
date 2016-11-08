@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneFader : MonoBehaviour {
 
-	public Text fadeScreenText;
+	private Text fadeScreenText;
+
 	public Text NextKey;
 
 	public bool IsFaded;
@@ -27,9 +28,6 @@ public class SceneFader : MonoBehaviour {
 
 	private TextBoxManager textBoxManager;
 
-	[SerializeField]
-	private bool isTest;
-
 	private string NextScene;
 
 	// Use this for initialization
@@ -38,6 +36,7 @@ public class SceneFader : MonoBehaviour {
 		cover = GameObject.Find ("Cover").GetComponent<SpriteRenderer>();
 		playerController = FindObjectOfType<PlayerController> ();
 		textBoxManager = FindObjectOfType<TextBoxManager> ();
+		fadeScreenText = GameObject.Find ("FadescreenText").GetComponent<Text>() ;
 
 		cover.color = Color.black;
 
@@ -64,10 +63,10 @@ public class SceneFader : MonoBehaviour {
 		}
 
 
-		if (!playerController.isAlive) 
+		if (!playerController.isAlive && playerController != null) 
 		{
 			IsFaded = false;
-			fadeScreenText.text = "You Lose press R to respawn from Checkpoint. \n Continues left: " 
+			fadeScreenText.text = "Press Space to continue. \n Continues left: " 
 				+ playerController.Lives.ToString() ;
 
 			if (playerController.Lives <= 0) 
@@ -85,20 +84,18 @@ public class SceneFader : MonoBehaviour {
 		{						
 			sceneSelect ();
 			SceneManager.LoadScene (NextScene);
-			PlayerData.Scene += 1;			
-
 		}
 
-		if (!playerController.isAlive) 
+		if (!playerController.isAlive && playerController != null) 
 		{
 			if (playerController.Lives > 0) 
 			{
-				NextKey.text = "Press R";
+				NextKey.text = "Press Space";
 			}
 
 			if (playerController.Lives == 0) 
 			{
-				NextKey.text = "Press M";
+				NextKey.text = "Press Space";
 			}
 
 		} else
@@ -115,7 +112,8 @@ public class SceneFader : MonoBehaviour {
 
 	void FadeToBlack ()
 	{
-		if (playerController.isAlive) {
+		if (playerController.isAlive && playerController != null) 
+		{
 			cover.color = Color.Lerp (cover.color, Color.black, Time.deltaTime * fadeTime);
 			fadeScreenText.color = Color.Lerp (fadeScreenText.color, Color.white, Time.deltaTime * fadeTime);
 			NextKey.color = Color.Lerp (fadeScreenText.color, Color.white, Time.deltaTime * fadeTime);
@@ -138,16 +136,29 @@ public class SceneFader : MonoBehaviour {
 
 		if (CurrentScene.name == "Tutorial_Calculation_Portion") 
 		{
-			if (PlayerData.IsKiller) 
+			if (PlayerData.KillCount >= 7) 
 			{
-				NextScene = "FenrirMain";
+				NextScene =("FenrirMain");
 			}
 
-			if (!PlayerData.IsKiller) 
+			if (PlayerData.KillCount < 7) 
 			{
-				NextScene = "IriMain";
+				NextScene = ("IriMain");
 			}
-		}				
+			print (PlayerData.KillCount);
+		}
+
+		if (CurrentScene.name == "IriMain") 
+		{
+			NextScene = ("End");
+			print ("Is Iri");
+		}
+
+		if (CurrentScene.name == "FenrirMain") 
+		{
+			NextScene = ("DEnd");
+		}
+
 	}
 }
 
