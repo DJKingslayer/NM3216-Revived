@@ -64,11 +64,8 @@ public class EndlessRunnerPlayer : MonoBehaviour {
 	private Transform feedbackLoc;
 
 	private Color cFull;
-
 	private StoryDialogue storyDialogue;
-
 	private ParticleSystem particles;
-
 	private PlatformGenerator platformGen;
 
 	// Use this for initialization
