@@ -1,4 +1,5 @@
-Good, Lupo. . . 
-Now watch out for the forest creatures. . . 
+Good, Lupo...
+Now look out for the forest creatures... 
 You can slip past them!
-Press [D] to evade
+Press [D] to Evade them.
+Evading will sometimes heal you!

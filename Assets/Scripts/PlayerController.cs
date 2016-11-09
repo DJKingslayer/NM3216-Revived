@@ -67,6 +67,10 @@ public class PlayerController : MonoBehaviour {
 
 	private ParticleSystem particles;
 
+	private HungerCtrl hunger;
+
+	private Vector3 failSafe;
+
 
 	// Use this for initialization
 	void Start () {
@@ -79,6 +83,12 @@ public class PlayerController : MonoBehaviour {
 		particles = gameObject.GetComponent<ParticleSystem> ();
 		cFull = wolfSprite.color;
 		UI = GameObject.Find ("Main Text").GetComponent<Text> ();
+		failSafe = transform.position;
+
+		if (SceneManager.GetActiveScene ().name == "IriMain")
+		{
+			hunger = FindObjectOfType<HungerCtrl> ();
+		}
 
 		source.pitch = 1;
 
@@ -146,6 +156,11 @@ public class PlayerController : MonoBehaviour {
 			InvokeRepeating ("PounceTimer", 1, 1);
 			pTimerActive = true;
 		}
+
+		if (Input.GetKeyDown (KeyCode.P)) 
+		{
+			transform.position = failSafe;
+		}
 	}
 
 	void FixedUpdate()
@@ -196,7 +211,7 @@ public class PlayerController : MonoBehaviour {
 
 	void OnCollisionEnter2D (Collision2D other)
 	{
-		if (other.gameObject.CompareTag ("GROUND")) 
+		if (other.gameObject.CompareTag ("GROUND") || other.gameObject.CompareTag ("Boulder")) 
 		{
 			isHurt = false;
 			anim.SetInteger ("State", 0);
@@ -272,6 +287,7 @@ public class PlayerController : MonoBehaviour {
 			takeDamage (1);
 		}
 	}
+
 
  
 	void MovePlayer(float playerSpeed)
@@ -385,7 +401,8 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
-	void Jump(){
+	void Jump()
+	{
 
 		rb.AddForce (new Vector2 (0,jumpspeedY));
 		source.PlayOneShot (Jump1);
@@ -616,6 +633,11 @@ public class PlayerController : MonoBehaviour {
 
 		isAlive = true;
 		sceneFader.IsFaded = true;
+
+		if (hunger != null)
+		{
+			hunger.currentHunger = hunger.TotalHunger;
+		}
 
 		if (PlayerData.godMode) 
 		{

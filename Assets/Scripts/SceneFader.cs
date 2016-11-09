@@ -151,6 +151,7 @@ public class SceneFader : MonoBehaviour {
 		if (CurrentScene.name == "IriMain") 
 		{
 			NextScene = ("End");
+			print ("Is Iri");
 		}
 
 		if (CurrentScene.name == "FenrirMain") 
