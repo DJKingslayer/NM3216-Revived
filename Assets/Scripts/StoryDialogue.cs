@@ -89,8 +89,8 @@ public class StoryDialogue : MonoBehaviour {
 		{
 			textBoxManager.ReloadScript (FenrirText, true);
 
-			textBoxManager.currentLine = 5;
-			textBoxManager.endAtLine = 5;
+			textBoxManager.currentLine = 4;
+			textBoxManager.endAtLine = 4;
 			textBoxManager.useFader = true;
 			fader.IsFaded = false;
 
