@@ -161,6 +161,11 @@ public class PlayerController : MonoBehaviour {
 		{
 			transform.position = failSafe;
 		}
+
+		if (Input.GetKeyDown (KeyCode.O)) 
+		{
+			SceneManager.LoadScene ("Menu");
+		}
 	}
 
 	void FixedUpdate()

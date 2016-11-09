@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class EndGameCamera : MonoBehaviour {
 
@@ -24,6 +25,11 @@ public class EndGameCamera : MonoBehaviour {
 //		{
 //			rb.velocity = new Vector2 (0, ScrollSpeed);
 //		}
+
+		if(Input.GetKeyDown(KeyCode.O))
+		{
+			SceneManager.LoadScene ("Menu");
+		}
 
 		Vector3 temp = transform.position;
 		temp.y = Mathf.Clamp (transform.position.y,EndPosition, -0.19f);
