@@ -69,6 +69,8 @@ public class PlayerController : MonoBehaviour {
 
 	private HungerCtrl hunger;
 
+	private Vector3 failSafe;
+
 
 	// Use this for initialization
 	void Start () {
@@ -81,6 +83,7 @@ public class PlayerController : MonoBehaviour {
 		particles = gameObject.GetComponent<ParticleSystem> ();
 		cFull = wolfSprite.color;
 		UI = GameObject.Find ("Main Text").GetComponent<Text> ();
+		failSafe = transform.position;
 
 		if (SceneManager.GetActiveScene ().name == "IriMain")
 		{
@@ -152,6 +155,11 @@ public class PlayerController : MonoBehaviour {
 		{
 			InvokeRepeating ("PounceTimer", 1, 1);
 			pTimerActive = true;
+		}
+
+		if (Input.GetKeyDown (KeyCode.P)) 
+		{
+			transform.position = failSafe;
 		}
 	}
 
